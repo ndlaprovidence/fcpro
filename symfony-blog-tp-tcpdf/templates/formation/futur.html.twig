@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue des formations
+{% endblock %}
+
+{% block body %}
+	<style>
+		.photo {
+			margin: 5px;
+			height: 525px;
+			object-fit: cover;
+			overflow: hidden;
+		}
+
+		.photo img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+	</style>
+	<h1 style="text-align: center;">Formations à venir</h1>
+
+	<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		<div class="carousel-inner">
+			{% for paquetDe3Formations in formationsPerThree %}
+				{%if paquetDe3Formations[1] is defined %}
+					<div class="carousel-item carousel-fit">
+						<img src="/uploads/images/{{ paquetDe3Formations[1].imageFileName }}" class="d-block w-100 photo" alt="1">
+						<div class="carousel-caption d-none d-md-block">
+							<h5 style="font-size: 22px" class="ch-max-25 bg-dark p-3 text-white bg-opacity-75 rounded">{{ paquetDe3Formations[1].name }}</h5>
+							<br>
+							<a class="btn btn-primary" href="/formation/{{ paquetDe3Formations[1].id }}" role="button">
+								Voir <i class="fa-solid fa-chevron-right fa-2xs"></i>
+							</a>
+						</div>
+					</div>
+				{% endif %}
+				{%if paquetDe3Formations[2] is defined %}
+					<div class="carousel-item active carousel-fit">
+						<img src="/uploads/images/{{ paquetDe3Formations[2].imageFileName }}" class="d-block w-100 photo" alt="1">
+						<div class="carousel-caption d-none d-md-block">
+							<h5 style="font-size: 22px" class="ch-max-25 bg-dark p-3 text-white bg-opacity-75 rounded">{{ paquetDe3Formations[2].name }}</h5>
+							<br>
+							<a class="btn btn-primary" href="/formation/{{ paquetDe3Formations[2].id }}" role="button">
+								Voir <i class="fa-solid fa-chevron-right fa-2xs"></i>
+							</a>
+						</div>
+					</div>
+				{% endif %}
+				{% if paquetDe3Formations[3] is defined %}
+					<div class="carousel-item carousel-fit">
+						<img src="/uploads/images/{{ paquetDe3Formations[3].imageFileName }}" class="d-block w-100 photo" alt="1">
+						<div class="carousel-caption d-none d-md-block">
+							<h5 style="font-size: 22px" class="ch-max-25 bg-dark p-3 text-white bg-opacity-75 rounded">{{ paquetDe3Formations[3].name }}</h5>
+							<br>
+							<a class="btn btn-primary" href="/formation/{{ paquetDe3Formations[3].id }}" role="button">
+								Voir <i class="fa-solid fa-chevron-right fa-2xs"></i>
+							</a>
+						</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+		<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		</button>
+	</div>
+
+{% endblock %}

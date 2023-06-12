@@ -50,13 +50,14 @@ class FormationController extends AbstractController
         <style> .blue { color: rgb(0, 63,144); } .link { color: rgb(100,0,0); }</style>
         <br>
         <p class="blue">
-<b>Tarifs :</b></p><p>
+<b>Tarifs :</b></p>
 '. $formation->getPrice() .' € net.
-        </p><br>
+        <br>
         <p class="blue">
 <b>Modalités :</b>
         </p>
-        '. $formation->getFormat() .'
+'. $formation->getFormat() .'
+        <div></div>
         <p class="blue">
 <b>Accessibilité aux personnes handicapées :</b>
 </p><p>
@@ -95,11 +96,9 @@ Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
         $textd = '
         <style>hr { color: rgb(0, 63,144); }</style>
         <p><b>Objectif de la formation</b>
-        <hr>
-        '. $formation->getObjectif() .'
+        <hr>'. $formation->getObjectif() .'
         <b>Prérequis necessaire / public visé</b>
-        <hr>
-        '. $formation->getPrerequis() .'
+        <hr>'. $formation->getPrerequis() .'
         <b>Modalités d\'accès et d\'inscription</b>
         <hr><br><div></div>
 <u>Dates</u> : '. $formation->getStartDateTime()->format('d/m/Y') .' à '. $formation->getEndDateTime()->format('d/m/Y') .'<br>
@@ -112,11 +111,9 @@ ne pourra avoir lieu.</i>
 
 '. $formation->getModalites() .'<br>
 <b>Moyens pédagogiques et techniques</b>
-        <hr><br>
-        '. $formation->getMoyenPedagogique() .'<br>
+        <hr>'. $formation->getMoyenPedagogique() .'<br>
 <b>Modalité d\'évaluation</b>
-        <hr><br>
-        '. $formation->getEvaluation() .'
+        <hr>'. $formation->getEvaluation() .'
         ';
 
         $pdf->SetFont('helvetica', '', 10);

@@ -21,51 +21,119 @@ class FormationController extends AbstractController
     #[Route('/pdf/{id}', name: 'app_formation_pdf', methods: ['GET'])]
     public function pdf(Formation $formation): Response
     {
-        $pdf = new TCPDF();
+        $pdf = new \TCPDF();
 
-        $left_column = '<img src="images/fcpro.jpg">' . 'Tarif : ' . $formation->getPrice() . ' €' . '<br><br>' . 'Places : ' . $formation->getCapacity();
-        $right_column = '<b><u>Description de la formation : </u></b><br><br>' . $formation->getDescription() . '<br><br><br>' . '<b><u>Contenu de la formation : </u></b>' . $formation->getContent();
-        $y = $pdf->getY();
-        $middle = $pdf->getPageWidth() / 2;
-        $name = '<b><i>' . $formation->getName() . '</i></b>';
-
-        $pdf->SetAuthor('SIO1-Team');
-
+        $pdf->SetAuthor('SIO TEAM ! 💻');
         $pdf->SetTitle($formation->getName());
+        $pdf->SetFont('times', '', 14);
         $pdf->setCellPaddings(1, 1, 1, 1);
         $pdf->setCellMargins(1, 1, 1, 1);
+        $pdf->setPrintHeader(false);
+        $pdf->setPrintFooter(false);
 
         $pdf->AddPage();
 
-        $pdf->setXY(10, 1);
-        $pdf->SetFont('helvetica', '', 9);
-        $pdf->SetFillColor(255, 255, 255);
-        $pdf->writeHTMLCell(125, '', '', $y, 'Date de création : 01/01/2023', 0, 0, 1, true, 'J', true);
+        
+        $pdf->SetFont('helvetica', 'B', 20);
+        $pdf->SetFillColor(160,222,255);
+        $pdf->SetTextColor(0, 63,144);
+        $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', 'https://fcpro-rtirbois.bts.sio-ndlp.fr/page/1', '', true, 150, '', false, false, 0, false, false, false);
+        $pdf->MultiCell(187, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '', '', true, 0, false, true, 20, 'M');
 
-        $pdf->setXY($middle, 1);
-        $pdf->SetFont('helvetica', '', 9);
-        $pdf->SetFillColor(255, 255, 255);
-        $pdf->writeHTMLCell(125, '', '', $y, 'Date de mise à jour : 01/01/2023', 0, 0, 1, true, 'J', true);
+        $pdf->SetFont('helvetica', 'B', 17);
+        $pdf->SetFillColor(225,225,230);
+        $pdf->SetTextColor(0,0,0);
+        $pdf->MultiCell(187, 10, $formation->getName(), 0, 'C', 1, 1, '', '', true);
+        
+        $pdf->setCellPaddings(3,3,3,3);
+        $textg = '
+        <style> .blue { color: rgb(0, 63,144); } .link { color: rgb(100,0,0); }</style>
+        <br>
+        <p class="blue">
+<b>Tarifs :</b></p><p>
+'. $formation->getPrice() .' € net.
+        </p><br>
+        <p class="blue">
+<b>Modalités :</b>
+        </p><p>
+Formation individuelle<br>
+2 journées de formation en présentiel<br>
+14 heures (2x7 heures)
+        </p><br>
+        <p class="blue">
+<b>Accessibilité aux personnes handicapées :</b>
+</p><p>
+<b>Accès au lieu de formation</b> :<br>
+Les locaux sont accessibles aux
+personnes en situation de handicap,
+merci de nous contacter.<br>
+<br>
+<b>Accès à la prestation</b> :<br>
+Une adaptation de la formation est
+possible pour les personnes en
+situation de handicap, merci de nous
+contacter.
+        </p><br>
+        <p class="blue">
+<b>Contact :</b>
+        </p><p>
+<b>Alexia HEBERT, responsable de FCPRO</b><br>
+Service de Formation Professionnelle<br>
+Continue de l’OGEC Notre Dame de la Providence<br>
+<br>
+9, rue chanoine Bérenger BP 340, 50300 AVRANCHES.<br>
+Tel 02 33 58 02 22<br>
+mail : <span class="link">fcpro@ndlpavranches.fr</span><br>
+<br>
+N° activité 25500040250<br>
+OF certifié QUALIOPI pour les actions de formations<br>
+<br>
+Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
+        </p>';
 
-        $pdf->setXY($middle-30, 15);
-        $pdf->SetFont('helvetica', '', 18);
-        $pdf->SetTextColor(1, 14, 51);
-        $pdf->SetFillColor(212, 225, 237);
-        $pdf->writeHTMLCell(125, '', '', $y, $name, 0, 0, 1, true, 'J', true);
+        $pdf->SetFont('helvetica', '', 10);
+        $pdf->SetFillColor(225,225,230);
+        $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
 
-        $pdf->SetFillColor(234, 232, 232);
-        $pdf->SetFont('helvetica', '', 11);
-        $pdf->setXY(10, 15);
-        $pdf->writeHTMLCell(60, '', '', $y, $left_column, 0, 0, 1, true, 'J', true);
+        $textd = '
+        <style>hr { color: rgb(0, 63,144); }</style>
+        <p><b>Objectif de la formation</b>
+        <hr>
+        '. $formation->getObjectif() .'
+        <b>Prérequis necessaire / public visé</b>
+        <hr>
+        '. $formation->getPrerequis() .'
+        <b>Modalités d\'accès et d\'inscription</b>
+        <hr><br>
+        <div>
+<u>Dates</u> : '. $formation->getStartDateTime()->format('d/m/Y') .' à '. $formation->getEndDateTime()->format('d/m/Y') .'<br>
+<u>Lieu</u> : ' . $formation->getPlace() . '
+<br><br>
+Nombre de stagiaires minimal : ' . $formation->getCapacityMin() . ' – Nombre de stagiaires maximal : '. $formation->getCapacity() .'<br>
+<i>Si le minimum requis de participants n’est pas atteint la session de formation
+ne pourra avoir lieu.</i>
+<br><br>
 
-        $pdf->SetFont('helvetica', '', 9);
-        $pdf->setXY($middle-30, 30);
-        $pdf->SetTextColor(0, 0, 0);
-        $pdf->SetFillColor(255, 255, 255);
-        $pdf->writeHTMLCell(125, '', '', $y, $right_column, 0, 0, 1, true, 'J', true);
+<b>Le chef d’établissement doit inscrire ses personnels auprès de FC PRO
+(contact par mail ou par téléphone) au plus tard 7 jours avant le début de
+la formation et faire la demande de prise en charge (sur OPCABOX pour
+le personnel OGEC, auprès de FORMIRIS pour le personnel enseignant)
+au plus tard 15 jours avant la date de début de la formation. L’inscription
+des personnels enseignants sur FORMIRIS devra se faire 7 jours avant
+la date de début de formation.</b></div><br>
+<b>Moyens pédagogiques et techniques</b>
+        <hr><br>
+        <div>'. $formation->getMoyenPedagogique() .'</div><br>
+<b>Modalité d\'évaluation</b>
+        <hr><br>
+        <div>'. $formation->getEvaluation() .'</div>
+        </p>';
 
+        $pdf->SetFont('helvetica', '', 10);
+        $pdf->SetFillColor(255,255,255);
+        $pdf->writeHTMLCell(120, 230, "", "", $textd, 0, 0, 1, true, '', true);
 
-        return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf', 'I');
+        return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
     }
 
     #[Route('/{id}/duplicate', name: 'app_formation_duplicate', methods: ['GET', 'POST'])]
@@ -85,6 +153,10 @@ class FormationController extends AbstractController
         $formation2->setImageFileName($formation->getImageFileName());
         $formation2->setName($formation->getName());
         $formation2->setPrice($formation->getPrice());
+        $formation2->setPrice($formation->getPlace());
+
+        $formation2->setPrice($formation->getObjectif());
+        $formation2->setPrice($formation->getPrerequis());
 
         $formationRepository->save($formation2, true);
         $this->addFlash('success', $translator->trans('The formation is copied'));

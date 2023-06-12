@@ -553,6 +553,10 @@
         <source>Your password should be at least {{ limit }} characters</source>
         <target>__Your password should be at least {{ limit }} characters</target>
       </trans-unit>
+      <trans-unit id="b6E7T.I" resname="Merci d'entrer un e-mail">
+        <source>Merci d'entrer un e-mail</source>
+        <target>__Merci d'entrer un e-mail</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

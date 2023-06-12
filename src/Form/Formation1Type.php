@@ -26,6 +26,7 @@ class Formation1Type extends AbstractType
         $builder->add('name');
         $builder->add('content', CKEditorType::class);
         $builder->add('capacity');
+        $builder->add('capacityMin');
         $builder->add('price');
         // $builder->add('createdAt');
         $builder->add('description');
@@ -39,8 +40,14 @@ class Formation1Type extends AbstractType
             'format' => 'yyyy-MM-dd',
             'input' => 'datetime_immutable',
         ]);
+        $builder->add('place');
         $builder->add('speaker');
         $builder->add('createdBy');
+        //Partie PDF
+        $builder->add('objectif', CKEditorType::class);
+        $builder->add('prerequis', CKEditorType::class);
+        $builder->add('moyenPedagogique', CKEditorType::class);
+        $builder->add('evaluation', CKEditorType::class);
 
         $builder->add('image', FileType::class, [
             'label' => $this->translator->trans('Illustration'),

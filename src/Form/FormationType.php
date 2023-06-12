@@ -15,13 +15,17 @@ class FormationType extends AbstractType
             ->add('name')
             ->add('content')
             ->add('capacity')
+            ->add('capacityMin')
             ->add('price')
             ->add('createdAt')
             ->add('startDate')
             ->add('endDate')
+            ->add('place')
             ->add('description')
             ->add('speaker')
             ->add('createdBy')
+            ->add('objectif')
+            ->add('prerequis')
         ;
     }
 

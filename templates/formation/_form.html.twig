@@ -18,6 +18,12 @@
             {{ form_row(form.capacity) }}
         </div>
         <div class="col">
+            {{ form_row(form.capacityMin) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
             {{ form_row(form.price) }}
         </div>
     </div>
@@ -28,6 +34,12 @@
         </div>
         <div class="col">
             {{ form_row(form.endDateTime) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            {{ form_row(form.place) }}
         </div>
     </div>
 
@@ -46,6 +58,27 @@
         </div>
         <div class="col">
             {{ form_row(form.image) }}
+        </div>
+    </div>
+
+    <br><h3>Contenu du PDF</h3><hr>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.objectif) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.prerequis) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.moyenPedagogique) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.evaluation) }}
+            <p><i>(Méthode d'evaluation)</i></p>
         </div>
     </div>
 

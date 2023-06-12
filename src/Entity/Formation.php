@@ -49,6 +49,24 @@ class Formation
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_file_name = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $capacityMin = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $place = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    private ?string $objectif = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    private ?string $prerequis = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $moyenPedagogique = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $evaluation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -182,6 +200,78 @@ class Formation
     public function setImageFileName(?string $image_file_name): self
     {
         $this->image_file_name = $image_file_name;
+
+        return $this;
+    }
+
+    public function getCapacityMin(): ?int
+    {
+        return $this->capacityMin;
+    }
+
+    public function setCapacityMin(?int $capacityMin): self
+    {
+        $this->capacityMin = $capacityMin;
+
+        return $this;
+    }
+
+    public function getPlace(): ?string
+    {
+        return $this->place;
+    }
+
+    public function setPlace(string $place): self
+    {
+        $this->place = $place;
+
+        return $this;
+    }
+
+    public function getObjectif(): ?string
+    {
+        return $this->objectif;
+    }
+
+    public function setObjectif(string $objectif): self
+    {
+        $this->objectif = $objectif;
+
+        return $this;
+    }
+
+    public function getPrerequis(): ?string
+    {
+        return $this->prerequis;
+    }
+
+    public function setPrerequis(string $prerequis): self
+    {
+        $this->prerequis = $prerequis;
+
+        return $this;
+    }
+
+    public function getMoyenPedagogique(): ?string
+    {
+        return $this->moyenPedagogique;
+    }
+
+    public function setMoyenPedagogique(string $moyenPedagogique): self
+    {
+        $this->moyenPedagogique = $moyenPedagogique;
+
+        return $this;
+    }
+
+    public function getEvaluation(): ?string
+    {
+        return $this->evaluation;
+    }
+
+    public function setEvaluation(string $evaluation): self
+    {
+        $this->evaluation = $evaluation;
 
         return $this;
     }

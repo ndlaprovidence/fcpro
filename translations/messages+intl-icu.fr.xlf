@@ -121,6 +121,86 @@
         <source>Please upload a valid image file</source>
         <target>Choisissez une image valide</target>
       </trans-unit>
+      <trans-unit id="rPUpZs7" resname="The formation is copied">
+        <source>The formation is copied</source>
+        <target>Cette formation a été copié</target>
+      </trans-unit>
+      <trans-unit id="ib2O.Pb" resname="This page is protected !">
+        <source>This page is protected !</source>
+        <target>Cette page est protégé !</target>
+      </trans-unit>
+      <trans-unit id="UzFhc1Y" resname="Accueil">
+        <source>Accueil</source>
+        <target>Accueil</target>
+      </trans-unit>
+      <trans-unit id="VGb1oXB" resname="Le centre de formation">
+        <source>Le centre de formation</source>
+        <target>Le centre de formation</target>
+      </trans-unit>
+      <trans-unit id="EDRROVB" resname="Catalogue">
+        <source>Catalogue</source>
+        <target>Catalogue</target>
+      </trans-unit>
+      <trans-unit id="LNft4B3" resname="Evaluer une formation">
+        <source>Evaluer une formation</source>
+        <target>Evaluer une formation</target>
+      </trans-unit>
+      <trans-unit id="Y_ItZ9L" resname="Tutoriels">
+        <source>Tutoriels</source>
+        <target>Tutoriels</target>
+      </trans-unit>
+      <trans-unit id="7lPu7Xt" resname="Certification Qualiopi">
+        <source>Certification Qualiopi</source>
+        <target>Certification Qualiopi</target>
+      </trans-unit>
+      <trans-unit id="K1w9JnI" resname="Contact">
+        <source>Contact</source>
+        <target>Contact</target>
+      </trans-unit>
+      <trans-unit id="6E33bLG" resname="Infos légales">
+        <source>Infos légales</source>
+        <target>Infos légales</target>
+      </trans-unit>
+      <trans-unit id="HDzUlxE" resname="Règles de confidentialités">
+        <source>Règles de confidentialités</source>
+        <target>Règles de confidentialités</target>
+      </trans-unit>
+      <trans-unit id="5CgHN_x" resname="Réservé">
+        <source>Réservé</source>
+        <target>Réservé</target>
+      </trans-unit>
+      <trans-unit id="OnqBk.y" resname="Users list">
+        <source>Users list</source>
+        <target>Liste des utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="ezuwN7u" resname="User index">
+        <source>User index</source>
+        <target>Liste utilisateurs</target>
+      </trans-unit>
+      <trans-unit id="U0M9PNE" resname="back to list">
+        <source>back to list</source>
+        <target>Retour à la liste</target>
+      </trans-unit>
+      <trans-unit id="4tClSWj" resname="Delete">
+        <source>Delete</source>
+        <target>Supprimer</target>
+      </trans-unit>
+      <trans-unit id="k8kchR5" resname="Price">
+        <source>Price</source>
+        <target>Prix</target>
+      </trans-unit>
+      <trans-unit id="7CGzuXO" resname="capacity">
+        <source>capacity</source>
+        <target>Capacité</target>
+      </trans-unit>
+      <trans-unit id="TFL6rV3" resname="Start Date">
+        <source>Start Date</source>
+        <target>Date de début</target>
+      </trans-unit>
+      <trans-unit id="6XCVHPt" resname="End Date">
+        <source>End Date</source>
+        <target>Date de fin</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

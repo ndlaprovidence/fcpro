@@ -1,67 +1,33 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catalogue des formations{% endblock %}
+{% block title %}Formation index
+{% endblock %}
 
 {% block body %}
-<h1>Catalogue des formations</h1>
-<table class='table'>
-    {% for formation in formations %}
-    <td>
-        <div class="card" style="width: 15rem;">
-            <img src="{{ asset('uploads/images/' ~ formation.imageFileName) }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ formation.name }}</h5>
-                <p class="card-text"><div class="line-clamp">{{ formation.content|raw }}</div></p>
-                <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvas-{{ formation.id }}" role="button"
-                    aria-controls="offcanvasExample">
-                    Détails
-                </a>
-                <a href="/formation/pdf/{{ formation.id }}" target="_blank" class="btn btn-secondary">PDF</a>
-                <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas-{{ formation.id }}"
-                    aria-labelledby="offcanvasExampleLabel">
-                    <div class="offcanvas-header">
-                        <h5 class="offcanvas-title" id="offcanvas-{{ formation.name }}">{{ formation.name }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <div align='center'>
-                            <strong> Dates : </strong>{{ formation.startDateTime ? formation.startDateTime|date('d/m/Y')
-                            : '' }} - {{ formation.endDateTime ? formation.endDateTime|date('d/m/Y') : '' }}<br>
-                            <hr>
-                            <strong> Tarif :</strong> {{ formation.price }}€<br>
-                            <hr>
-                            <strong> Capacité :</strong> {{ formation.capacity }} personnes.<br>
-                            <hr>
-                            <strong> Contenu :</strong>{{ formation.content|raw }}<br>
-                            <hr>
-                            <strong> Description :</strong> {{ formation.description }}<br>
-                            <hr>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        </div>
-    <td>
+<h1>Formation index</h1>
 
-
-        {% else %}
-        <div class="card" aria-hidden="true">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title placeholder-glow">
-                    <span class="placeholder col-6"></span>
-                </h5>
-                <p class="card-text placeholder-glow">
-                    <span class="placeholder col-7"></span>
-                    <span class="placeholder col-4"></span>
-                    <span class="placeholder col-4"></span>
-                    <span class="placeholder col-6"></span>
-                    <span class="placeholder col-8"></span>
-                </p>
-                <a class="btn btn-primary disabled placeholder col-6"></a>
-            </div>
-        </div>
-        {% endfor %}
-</table>
+{% set number = 0 %}
+<div class="accordion" id="accordionExample">
+	{% for formation in formations %}
+    {% set number = number + 1 %}
+		<div class="accordion-item">
+			<h2 class="accordion-header">
+				<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ formation.id }}" aria-expanded="true" aria-controls="collapse{{ formation.id }}">
+					{{ formation.name }}
+				</button>
+			</h2>
+			<div id="collapse{{ formation.id }}" class="accordion-collapse collapse {% if number <2 %} show {% endif %}" data-bs-parent="#accordionExample">
+				<div class="accordion-body">
+                <strong>{{'Price'|trans}} : </strong>{{ formation.price }}€<br>
+                <strong>{{'capacity'|trans}} : </strong>{{ formation.capacity }}<br>
+                <strong>{{'Start Date'|trans}} : </strong>{{ formation.startDateTime ? formation.startDateTime|date('Y/m/d') : '' }}<br>
+                <strong>{{'End Date'|trans}} : </strong>{{ formation.endDateTime ? formation.endDateTime|date('Y/m/d') : '' }}<br><br>
+					{{ formation.content|raw  }}
+					<br>
+					<a href="/formation/pdf/{{ formation.id }}" class="btn btn-primary" target="_blank">PDF</a>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>
 {% endblock %}

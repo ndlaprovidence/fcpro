@@ -55,11 +55,8 @@ class FormationController extends AbstractController
         </p><br>
         <p class="blue">
 <b>Modalités :</b>
-        </p><p>
-Formation individuelle<br>
-2 journées de formation en présentiel<br>
-14 heures (2x7 heures)
-        </p><br>
+        </p>
+        '. $formation->getFormat() .'
         <p class="blue">
 <b>Accessibilité aux personnes handicapées :</b>
 </p><p>
@@ -104,30 +101,23 @@ Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
         <hr>
         '. $formation->getPrerequis() .'
         <b>Modalités d\'accès et d\'inscription</b>
-        <hr><br>
-        <div>
+        <hr><br><div></div>
 <u>Dates</u> : '. $formation->getStartDateTime()->format('d/m/Y') .' à '. $formation->getEndDateTime()->format('d/m/Y') .'<br>
 <u>Lieu</u> : ' . $formation->getPlace() . '
 <br><br>
 Nombre de stagiaires minimal : ' . $formation->getCapacityMin() . ' – Nombre de stagiaires maximal : '. $formation->getCapacity() .'<br>
 <i>Si le minimum requis de participants n’est pas atteint la session de formation
 ne pourra avoir lieu.</i>
-<br><br>
+<br>
 
-<b>Le chef d’établissement doit inscrire ses personnels auprès de FC PRO
-(contact par mail ou par téléphone) au plus tard 7 jours avant le début de
-la formation et faire la demande de prise en charge (sur OPCABOX pour
-le personnel OGEC, auprès de FORMIRIS pour le personnel enseignant)
-au plus tard 15 jours avant la date de début de la formation. L’inscription
-des personnels enseignants sur FORMIRIS devra se faire 7 jours avant
-la date de début de formation.</b></div><br>
+'. $formation->getModalites() .'<br>
 <b>Moyens pédagogiques et techniques</b>
         <hr><br>
-        <div>'. $formation->getMoyenPedagogique() .'</div><br>
+        '. $formation->getMoyenPedagogique() .'<br>
 <b>Modalité d\'évaluation</b>
         <hr><br>
-        <div>'. $formation->getEvaluation() .'</div>
-        </p>';
+        '. $formation->getEvaluation() .'
+        ';
 
         $pdf->SetFont('helvetica', '', 10);
         $pdf->SetFillColor(255,255,255);
@@ -153,7 +143,13 @@ la date de début de formation.</b></div><br>
         $formation2->setImageFileName($formation->getImageFileName());
         $formation2->setName($formation->getName());
         $formation2->setPrice($formation->getPrice());
-        $formation2->setPrice($formation->getPlace());
+        $formation2->setPlace($formation->getPlace());
+        $formation2->setObjectif($formation->getObjectif());
+        $formation2->setPrerequis($formation->getPrerequis());
+        $formation2->setMoyenPedagogique($formation->getMoyenPedagogique());
+        $formation2->setEvaluation($formation->getEvaluation());
+        $formation2->setModalites($formation->getModalites());
+        $formation2->setFormat($formation->getFormat());
 
         $formation2->setPrice($formation->getObjectif());
         $formation2->setPrice($formation->getPrerequis());

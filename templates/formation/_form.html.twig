@@ -77,8 +77,22 @@
             {{ form_row(form.moyenPedagogique) }}
         </div>
         <div class="col">
-            {{ form_row(form.evaluation) }}
-            <p><i>(Méthode d'evaluation)</i></p>
+            {{ form_row(form.evaluation) }} 
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.modalites, {'value' : '<b>Le chef d\'établissement doit inscrire ses personnels auprès de FC PRO
+(contact par mail ou par téléphone) au plus tard 7 jours avant le début de
+la formation et faire la demande de prise en charge (sur OPCABOX pour
+le personnel OGEC, auprès de FORMIRIS pour le personnel enseignant)
+au plus tard 15 jours avant la date de début de la formation. L\'inscription
+des personnels enseignants sur FORMIRIS devra se faire 7 jours avant
+la date de début de formation.</b>'}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.format) }} 
         </div>
     </div>
 

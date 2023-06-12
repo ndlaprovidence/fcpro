@@ -67,6 +67,12 @@ class Formation
     #[ORM\Column(type: Types::TEXT)]
     private ?string $evaluation = null;
 
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $modalites = null;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $format = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -272,6 +278,30 @@ class Formation
     public function setEvaluation(string $evaluation): self
     {
         $this->evaluation = $evaluation;
+
+        return $this;
+    }
+
+    public function getModalites(): ?string
+    {
+        return $this->modalites;
+    }
+
+    public function setModalites(string $modalites): self
+    {
+        $this->modalites = $modalites;
+
+        return $this;
+    }
+
+    public function getFormat(): ?string
+    {
+        return $this->format;
+    }
+
+    public function setFormat(string $format): self
+    {
+        $this->format = $format;
 
         return $this;
     }

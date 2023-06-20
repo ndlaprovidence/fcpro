@@ -201,6 +201,10 @@
         <source>End Date</source>
         <target>Date de fin</target>
       </trans-unit>
+      <trans-unit id="T3Of.cY" resname="Proposition list">
+        <source>Proposition list</source>
+        <target>Liste des propositions</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

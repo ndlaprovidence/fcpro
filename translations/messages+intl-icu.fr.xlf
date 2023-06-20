@@ -205,6 +205,38 @@
         <source>Proposition list</source>
         <target>Liste des propositions</target>
       </trans-unit>
+      <trans-unit id="EhVukhv" resname="Id">
+        <source>Id</source>
+        <target>Id</target>
+      </trans-unit>
+      <trans-unit id="3NHVIj9" resname="Name">
+        <source>Name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="R70pB1_" resname="Content">
+        <source>Content</source>
+        <target>Contenu</target>
+      </trans-unit>
+      <trans-unit id="rmXQllU" resname="Capacity">
+        <source>Capacity</source>
+        <target>Capacité</target>
+      </trans-unit>
+      <trans-unit id="_NU_9fk" resname="CreatedAt">
+        <source>CreatedAt</source>
+        <target>Créer le</target>
+      </trans-unit>
+      <trans-unit id="Um4Ah8w" resname="Description">
+        <source>Description</source>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="cBFtbub" resname="StartDateTime">
+        <source>StartDateTime</source>
+        <target>Date de début</target>
+      </trans-unit>
+      <trans-unit id="iQeb6IN" resname="EndDateTime">
+        <source>EndDateTime</source>
+        <target>Date de fin</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

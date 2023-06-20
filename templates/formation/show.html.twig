@@ -8,39 +8,39 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{'Id'|trans}}</th>
                 <td>{{ formation.id }}</td>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>{{'Name'|trans}}</th>
                 <td>{{ formation.name }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>{{'Content'|trans}}</th>
                 <td>{{ formation.content|raw }}</td>
             </tr>
             <tr>
-                <th>Capacity</th>
+                <th>{{'Capacity'|trans}}</th>
                 <td>{{ formation.capacity }}</td>
             </tr>
             <tr>
-                <th>Price</th>
+                <th>{{'Price'|trans}}</th>
                 <td>{{ formation.price }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>{{'CreatedAt'|trans}}</th>
                 <td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>Description</th>
+                <th>{{'Description'|trans}}</th>
                 <td>{{ formation.description }}</td>
             </tr>
             <tr>
-                <th>StartDateTime</th>
+                <th>{{'StartDateTime'|trans}}</th>
                 <td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>EndDateTime</th>
+                <th>{{'EndDateTime'|trans}}</th>
                 <td>{{ formation.endDateTime ? formation.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>

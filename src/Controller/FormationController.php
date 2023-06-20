@@ -225,7 +225,7 @@ ne pourra avoir lieu.</i>
             }
             $formationRepository->save($formation, true);
 
-            //return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('formation/new.html.twig', [

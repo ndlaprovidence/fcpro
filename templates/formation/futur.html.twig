@@ -28,7 +28,7 @@
 		</div>
 		<div class="carousel-inner">
 			{% for paquetDe3Formations in formationsPerThree %}
-				{%if paquetDe3Formations[1] is defined %}
+				{% if paquetDe3Formations[1] is defined %}
 					<div class="carousel-item carousel-fit">
 						<img src="/uploads/images/{{ paquetDe3Formations[1].imageFileName }}" class="d-block w-100 photo" alt="1">
 						<div class="carousel-caption d-none d-md-block">
@@ -40,7 +40,7 @@
 						</div>
 					</div>
 				{% endif %}
-				{%if paquetDe3Formations[2] is defined %}
+				{% if paquetDe3Formations[2] is defined %}
 					<div class="carousel-item active carousel-fit">
 						<img src="/uploads/images/{{ paquetDe3Formations[2].imageFileName }}" class="d-block w-100 photo" alt="1">
 						<div class="carousel-caption d-none d-md-block">

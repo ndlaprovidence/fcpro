@@ -67,7 +67,7 @@ class Formation
     #[ORM\Column(type: Types::TEXT)]
     private ?string $evaluation = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $modalites = null;
 
     #[ORM\Column(type: Types::TEXT)]

@@ -26,14 +26,18 @@ class PropositionController extends AbstractController
     #[Route('/new', name: 'app_proposition_new', methods: ['GET', 'POST'])]
     public function new(Request $request, PropositionRepository $propositionRepository): Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
         $proposition = new Proposition();
         $form = $this->createForm(PropositionType::class, $proposition);
+        $proposition->setEmail($this->getUser());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $propositionRepository->save($proposition, true);
 
-            return $this->redirectToRoute('app_proposition_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_page_show', ['id' => 1]);
         }
 
         return $this->renderForm('proposition/new.html.twig', [

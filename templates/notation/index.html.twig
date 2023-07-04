@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Notation index{% endblock %}
+
+{% block body %}
+    <h1>Notation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom_formation</th>
+                <th>User</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for notation in notations %}
+            <tr>
+                <td>{{ notation.id }}</td>
+                <td>{{ notation.nomFormation }}</td>
+                <td>{{ notation.user }}</td>
+                <td>{{ notation.note }}</td>
+                <td>
+                    <a href="{{ path('app_notation_show', {'id': notation.id}) }}">show</a>
+                    <a href="{{ path('app_notation_edit', {'id': notation.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_notation_new') }}">Create new</a>
+{% endblock %}

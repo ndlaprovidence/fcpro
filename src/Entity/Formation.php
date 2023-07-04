@@ -73,6 +73,9 @@ class Formation
     #[ORM\Column(type: Types::TEXT)]
     private ?string $format = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $Note = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -302,6 +305,18 @@ class Formation
     public function setFormat(string $format): self
     {
         $this->format = $format;
+
+        return $this;
+    }
+
+    public function getNote(): ?int
+    {
+        return $this->Note;
+    }
+
+    public function setNote(?int $Note): self
+    {
+        $this->Note = $Note;
 
         return $this;
     }

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Notation{% endblock %}
+
+{% block body %}
+    <h1>Create new Notation</h1>
+
+    {{ include('notation/_form.html.twig') }}
+
+    <a href="{{ path('app_notation_index') }}">back to list</a>
+{% endblock %}

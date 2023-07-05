@@ -30,6 +30,10 @@
     body {
       min-height: 100%;
     }
+    .qualiopi {
+      z-index: 2;
+      position: fixed;
+    }
   </style>
 </head>
 
@@ -142,14 +146,19 @@
 
   <br><br>
 
+<div class="qualiopi px-md-3 py-md-5">
+    <img src="/images/LogoQualiopi-72dpi-Avec-Marianne.png"></img>
+    </div>
   <div class="col-lg-8 mx-auto p-4 py-md-5">
     <main>
+
       {% block body %}{% endblock %}
+
     </main>
 
     <!--Footer-->
     <footer class="pt-5 my-5 text-muted">
-      &copy; {{'Created by the SIO team'|trans}}
+      &copy; NDLP Avranches
     </footer>
 
   </div>
@@ -183,6 +192,7 @@
         <ul class="list-unstyled">
           <li class="mb-2"><a href="/page/6">Qualiopi</a></li>
         </ul>
+        <img src="/images/LogoQualiopi-150dpi-AvecMarianne.png"></img>
       </div>
     </div>
   </div>

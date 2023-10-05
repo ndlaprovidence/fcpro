@@ -126,7 +126,7 @@ ne pourra avoir lieu.</i>
     #[Route('/{id}/duplicate', name: 'app_formation_duplicate', methods: ['GET', 'POST'])]
     public function duplicate(Request $request, FormationRepository $formationRepository, TranslatorInterface $translator, Formation $formation): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $formation2 = new Formation();
         $formation2->setCreatedAt($formation->getCreatedAt());

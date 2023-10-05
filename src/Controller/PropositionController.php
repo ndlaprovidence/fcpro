@@ -16,7 +16,7 @@ class PropositionController extends AbstractController
     #[Route('/', name: 'app_proposition_index', methods: ['GET'])]
     public function index(PropositionRepository $propositionRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('proposition/index.html.twig', [
             'propositions' => $propositionRepository->findAll(),

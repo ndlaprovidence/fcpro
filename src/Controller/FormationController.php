@@ -198,7 +198,7 @@ ne pourra avoir lieu.</i>
     #[Route('/', name: 'app_formation_index', methods: ['GET'])]
     public function index(FormationRepository $formationRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         return $this->render('formation/index.html.twig', [
             'formations' => $formationRepository->findAll(),
@@ -208,7 +208,7 @@ ne pourra avoir lieu.</i>
     #[Route('/new', name: 'app_formation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository, TranslatorInterface $translator): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $formation = new Formation();
         $formation->setCreatedAt(new DateTimeImmutable());
@@ -245,7 +245,7 @@ ne pourra avoir lieu.</i>
     #[Route('/{id}/edit', name: 'app_formation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ImageUploaderHelper $imageUploaderHelper, FormationRepository $formationRepository, Formation $formation, TranslatorInterface $translator): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
         $form = $this->createForm(Formation1Type::class, $formation);
         $form->handleRequest($request);

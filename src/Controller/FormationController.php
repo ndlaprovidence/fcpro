@@ -148,9 +148,6 @@ ne pourra avoir lieu.</i>
         $formation2->setModalites($formation->getModalites());
         $formation2->setFormat($formation->getFormat());
 
-        $formation2->setPrice($formation->getObjectif());
-        $formation2->setPrice($formation->getPrerequis());
-
         $formationRepository->save($formation2, true);
         $this->addFlash('success', $translator->trans('The formation is copied'));
 

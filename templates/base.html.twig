@@ -103,6 +103,7 @@
               <li><hr class="dropdown-divider"></li>
 
                <!--Pages-->
+               {% if is_granted('ROLE_ADMIN') %}
               <li><a class="dropdown-item" href="/page"><i class="fa-solid fa-list-ul"></i> {{'Pages list'|trans}}</a></li>
               <li><a class="dropdown-item" href="/page/new"><i class="fa-solid fa-plus"></i> {{'New page'|trans}}</a></li>
               
@@ -111,6 +112,7 @@
               <li><a class="dropdown-item" href="/user"><i class="fa-solid fa-list-ul"></i> {{'Users list'|trans}}</a></li>
 
               <li><hr class="dropdown-divider"></li>
+              {% endif %}
 
               <li><a class="dropdown-item" href="/proposition"><i class="fa-solid fa-list-ul"></i> {{'Proposition list'|trans}}</a></li>
             </ul>

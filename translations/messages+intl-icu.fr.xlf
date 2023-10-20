@@ -237,6 +237,10 @@
         <source>EndDateTime</source>
         <target>Date de fin</target>
       </trans-unit>
+      <trans-unit id="WH_TjTo" resname="CapacityMin">
+        <source>CapacityMin</source>
+        <target>Capacité Minimum</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

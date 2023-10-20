@@ -188,7 +188,7 @@ ne pourra avoir lieu.</i>
     public function catalog(FormationRepository $formationRepository): Response
     {
         return $this->render('formation/catalog.html.twig', [
-            'formations' => $formationRepository->findAllInTheFuture(),
+            'formations' => $formationRepository->findAll(),
         ]);
     }
 
@@ -197,8 +197,11 @@ ne pourra avoir lieu.</i>
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
+        // Récupérez les formations triées par date de début
+        $formations = $formationRepository->findBy([], ['startDateTime' => 'ASC']);
+
         return $this->render('formation/index.html.twig', [
-            'formations' => $formationRepository->findAll(),
+            'formations' => $formations,
         ]);
     }
 

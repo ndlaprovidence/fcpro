@@ -25,8 +25,8 @@ class Formation1Type extends AbstractType
     {
         $builder->add('name');
         $builder->add('content', CKEditorType::class);
-        $builder->add('capacity');
         $builder->add('capacityMin');
+        $builder->add('capacity');
         $builder->add('price');
         // $builder->add('createdAt');
         $builder->add('description');

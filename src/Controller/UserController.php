@@ -63,20 +63,6 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $user->setPassword(
-                $userPasswordHasher->hashPassword(
-                    $user,
-                    $user->getPassword()
-                )
-            );
-
-            $userRepository->save($user, true);
-
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-        }
-
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,
             'form' => $form,

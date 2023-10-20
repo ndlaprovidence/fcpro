@@ -8,6 +8,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>Date de début</th>
                 <th>Id</th>
                 <th>Nom</th>
                 {#<th>Content</th>#}
@@ -15,7 +16,7 @@
                 {#<th>Tarif</th>#}
                 {#<th>Date de création</th>#}
                 {#<th>Description</th>#}
-                {#<th>Date de début</th>#}
+                
                 {#<th>Date de fin</th>#}
                 <th>Actions</th>
             </tr>
@@ -23,6 +24,7 @@
         <tbody>
         {% for formation in formations %}
             <tr>
+                <td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ formation.id }}</td>
                 <td>{{ formation.name }}</td>
                 {#<td>{{ formation.content }}</td>#}
@@ -30,7 +32,7 @@
                 {#<td>{{ formation.price }}</td>#}
                 {#<td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>#}
                 {#<td>{{ formation.description }}</td>#}
-                {#<td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>#}
+                
                 {#<td>{{ formation.endDateTime ? formation.endDateTime|date('Y-m-d H:i:s') : '' }}</td>#}
                 <td>
                     <a class="btn btn-secondary btn-sm" href="{{ path('app_formation_show', {'id': formation.id}) }}"><i class="fa-solid fa-eye"></i></a>

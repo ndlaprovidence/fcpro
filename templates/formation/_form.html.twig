@@ -3,52 +3,52 @@
 
     <div class="row">
         <div>
-            {{ form_row(form.name) }}
+            {{ form_row(form.name, {'label': 'Nom de la formation'}) }}
         </div>
         <div>
-            {{ form_row(form.description) }}
+            {{ form_row(form.description, {'label': 'Description'}) }}
         </div>
         <div>
-            {{ form_row(form.content) }}
+            {{ form_row(form.content, {'label': 'Contenu'}) }}
         </div>
     </div>
 
     <div class="row">
-        <div class="col">
-            {{ form_row(form.capacity) }}
+    <div class="col">
+            {{ form_row(form.capacityMin, {'label': 'Capacité Minimum'}) }}
         </div>
         <div class="col">
-            {{ form_row(form.capacityMin) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div>
-            {{ form_row(form.price) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col">
-            {{ form_row(form.startDateTime) }}
-        </div>
-        <div class="col">
-            {{ form_row(form.endDateTime) }}
+            {{ form_row(form.capacity, {'label': 'Capacité Maxium'}) }}
         </div>
     </div>
 
     <div class="row">
         <div>
-            {{ form_row(form.place) }}
+            {{ form_row(form.price, {'label': 'Prix'}) }}
         </div>
     </div>
 
     <div class="row">
         <div class="col">
-            {{ form_row(form.speaker) }}
+            {{ form_row(form.startDateTime, {'label': 'Date de début'}) }}
         </div>
         <div class="col">
-            {{ form_row(form.createdBy) }}
+            {{ form_row(form.endDateTime, {'label': 'Date de fin'}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            {{ form_row(form.place, {'label': 'Lieu'}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.speaker, {'label': 'Intervenant'}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.createdBy, {'label': 'Créer par'}) }}
         </div>
     </div>
 

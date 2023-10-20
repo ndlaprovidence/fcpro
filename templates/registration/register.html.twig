@@ -6,6 +6,22 @@
     {% for flash_error in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
     {% endfor %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const passwordInput = document.querySelector('#registration_form_plainPassword');
+        const togglePasswordButton = document.querySelector('#togglePassword');
+
+        togglePasswordButton.addEventListener('click', function() {
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePasswordButton.textContent = 'Masquer le mot de passe';
+            } else {
+                passwordInput.type = 'password';
+                togglePasswordButton.textContent = 'Afficher le mot de passe';
+            }
+        });
+    });
+</script>
 
     <h1>Register</h1>
 
@@ -13,7 +29,7 @@
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
-        }) }}
+        }) }}<button type="button" id="togglePassword" class="btn btn-link">Afficher le mot de passe</button><hr>
         {{ form_row(registrationForm.agreeTerms) }}
 
         <button class="btn btn-primary" type="submit" class="btn">Register</button>

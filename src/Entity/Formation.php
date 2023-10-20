@@ -28,8 +28,8 @@ class Formation
     #[ORM\Column(nullable: true)]
     private ?float $price = null;
 
-    #[ORM\ManyToOne(inversedBy: 'formations')]
-    private ?User $speaker = null;
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $speaker = null;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $createdAt = null;
@@ -55,22 +55,22 @@ class Formation
     #[ORM\Column(length: 255)]
     private ?string $place = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $objectif = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: false)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $prerequis = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $moyenPedagogique = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $evaluation = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $modalites = null;
 
-    #[ORM\Column(type: Types::TEXT)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $format = null;
 
     #[ORM\Column(nullable: true)]
@@ -129,12 +129,12 @@ class Formation
         return $this;
     }
 
-    public function getSpeaker(): ?User
+    public function getSpeaker(): ?string
     {
         return $this->speaker;
     }
 
-    public function setSpeaker(?User $speaker): self
+    public function setSpeaker(?string $speaker): self
     {
         $this->speaker = $speaker;
 
@@ -230,7 +230,7 @@ class Formation
         return $this->place;
     }
 
-    public function setPlace(string $place): self
+    public function setPlace(?string $place): self
     {
         $this->place = $place;
 
@@ -242,7 +242,7 @@ class Formation
         return $this->objectif;
     }
 
-    public function setObjectif(string $objectif): self
+    public function setObjectif(?string $objectif): self
     {
         $this->objectif = $objectif;
 
@@ -254,7 +254,7 @@ class Formation
         return $this->prerequis;
     }
 
-    public function setPrerequis(string $prerequis): self
+    public function setPrerequis(?string $prerequis): self
     {
         $this->prerequis = $prerequis;
 
@@ -266,7 +266,7 @@ class Formation
         return $this->moyenPedagogique;
     }
 
-    public function setMoyenPedagogique(string $moyenPedagogique): self
+    public function setMoyenPedagogique(?string $moyenPedagogique): self
     {
         $this->moyenPedagogique = $moyenPedagogique;
 
@@ -278,7 +278,7 @@ class Formation
         return $this->evaluation;
     }
 
-    public function setEvaluation(string $evaluation): self
+    public function setEvaluation(?string $evaluation): self
     {
         $this->evaluation = $evaluation;
 
@@ -290,7 +290,7 @@ class Formation
         return $this->modalites;
     }
 
-    public function setModalites(string $modalites): self
+    public function setModalites(?string $modalites): self
     {
         $this->modalites = $modalites;
 
@@ -302,7 +302,7 @@ class Formation
         return $this->format;
     }
 
-    public function setFormat(string $format): self
+    public function setFormat(?string $format): self
     {
         $this->format = $format;
 

@@ -11,6 +11,7 @@
                 <th>Date de début</th>
                 <th>Id</th>
                 <th>Nom</th>
+                <th>Validé</th>
                 {#<th>Content</th>#}
                 {#<th>Capacité</th>#}
                 {#<th>Tarif</th>#}
@@ -27,6 +28,7 @@
                 <td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ formation.id }}</td>
                 <td>{{ formation.name }}</td>
+                <td>{{ formation.validation }}</td>
                 {#<td>{{ formation.content }}</td>#}
                 {#<td>{{ formation.capacity }}</td>#}
                 {#<td>{{ formation.price }}</td>#}

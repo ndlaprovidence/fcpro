@@ -76,6 +76,9 @@ class Formation
     #[ORM\Column(nullable: true)]
     private ?int $Note = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $validation = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -317,6 +320,18 @@ class Formation
     public function setNote(?int $Note): self
     {
         $this->Note = $Note;
+
+        return $this;
+    }
+
+    public function getValidation(): ?bool
+    {
+        return $this->validation;
+    }
+
+    public function setValidation(?bool $validation): self
+    {
+        $this->validation = $validation;
 
         return $this;
     }

@@ -9,6 +9,7 @@
 {% set number = 0 %}
 <div class="accordion" id="accordionExample">
 	{% for formation in formations %}
+	{% if formation.validation %}
     {% set number = number + 1 %}
 		<div class="accordion-item">
 			<h2 class="accordion-header">
@@ -28,6 +29,7 @@
 				</div>
 			</div>
 		</div>
+	{% endif %}
 	{% endfor %}
 </div>
 {% endblock %}

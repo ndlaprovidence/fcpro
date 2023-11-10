@@ -12,6 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class Formation1Type extends AbstractType
 {
@@ -76,6 +77,11 @@ class Formation1Type extends AbstractType
                     'mimeTypesMessage' => $this->translator->trans('Please upload a valid image file'),
                 ])
             ],
+        ]);
+
+        $builder->add('validation', CheckboxType::class, [
+            'label' => 'Valider la formation',
+            'required' => false,
         ]);
     }
 

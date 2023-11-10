@@ -14,14 +14,22 @@
         togglePasswordButton.addEventListener('click', function() {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                togglePasswordButton.textContent = 'Masquer le mot de passe';
+                togglePasswordButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
             } else {
                 passwordInput.type = 'password';
-                togglePasswordButton.textContent = 'Afficher le mot de passe';
+                togglePasswordButton.innerHTML = '<i class="fas fa-eye"></i>';
             }
         });
     });
 </script>
+
+<style>
+.abso{
+    position:absolute;
+    margin-top: -40px;
+    margin-left: 97%;
+}
+</style>
 
     <form action="{{ path('app_login') }}" method="post">
         <div class="form-floating mb-3">
@@ -32,7 +40,9 @@
         <div class="form-floating mb-3">
             <input type="password" class="form-control" id="password" placeholder="{{'Password:'|trans}}" name="_password">
             <label for="password">{{'Password:'|trans}}</label>
-            <button type="button" id="togglePassword" class="btn btn-link">Afficher le mot de passe</button>
+            <button type="button" id="togglePassword" class="btn btn-link abso" style="padding: 0; border: none; background: none;">
+                    <i class="fas fa-eye"></i>
+            </button>
             <div id="emailHelp" class="form-text">Veillez à ne jamais partager vos information d'identification.</div>
         </div>
             {# If you want to control the URL the user is redirected to on success

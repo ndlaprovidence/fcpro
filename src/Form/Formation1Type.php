@@ -34,22 +34,24 @@ class Formation1Type extends AbstractType
             'widget' => 'single_text',
             'format' => 'yyyy-MM-dd',
             'input' => 'datetime_immutable',
+            'required' => false, 
         ]);
         $builder->add('endDateTime', DateType::class, [
             'widget' => 'single_text',
             'format' => 'yyyy-MM-dd',
             'input' => 'datetime_immutable',
+            'required' => false, 
         ]);
         $builder->add('place');
         $builder->add('speaker');
         $builder->add('createdBy');
         //Partie PDF
-        $builder->add('objectif', CKEditorType::class);
-        $builder->add('prerequis', CKEditorType::class);
-        $builder->add('moyenPedagogique', CKEditorType::class);
-        $builder->add('evaluation', CKEditorType::class, ['label' => 'Méthode d\'évaluation']);
-        $builder->add('modalites', CKEditorType::class, ['label' => 'Modalités']);
-        $builder->add('format', CKEditorType::class, ['label' => 'Format (champ modalités dans la partie grise à gauche du pdf)']);
+        $builder->add('objectif', CKEditorType::class, ['required' => false]);
+        $builder->add('prerequis', CKEditorType::class, ['required' => false]);
+        $builder->add('moyenPedagogique', CKEditorType::class, ['required' => false]);
+        $builder->add('evaluation', CKEditorType::class, ['required' => false, 'label' => 'Méthode d\'évaluation']);
+        $builder->add('modalites', CKEditorType::class, ['required' => false, 'label' => 'Modalités']);
+        $builder->add('format', CKEditorType::class, ['required' => false, 'label' => 'Format (champ modalités dans la partie grise à gauche du pdf)']);
 
         $builder->add('image', FileType::class, [
             'label' => $this->translator->trans('Illustration'),

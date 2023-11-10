@@ -52,7 +52,7 @@ class Formation
     #[ORM\Column(nullable: true)]
     private ?int $capacityMin = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $place = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

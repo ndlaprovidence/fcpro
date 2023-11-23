@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}S'inscrire{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
@@ -14,24 +14,32 @@
         togglePasswordButton.addEventListener('click', function() {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                togglePasswordButton.textContent = 'Masquer le mot de passe';
+                togglePasswordButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
             } else {
                 passwordInput.type = 'password';
-                togglePasswordButton.textContent = 'Afficher le mot de passe';
+                togglePasswordButton.innerHTML = '<i class="fas fa-eye"></i>';
             }
         });
     });
 </script>
 
-    <h1>Register</h1>
+<style>
+.abso{
+    position:absolute;
+    margin-top: -55px;
+    margin-left: 61.8%;
+}
+</style>
+
+    <h1>S'inscrire</h1>
 
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
-        }) }}<button type="button" id="togglePassword" class="btn btn-link">Afficher le mot de passe</button><hr>
+        }) }}<button type="button" id="togglePassword" class="btn btn-link abso"><i class="fas fa-eye"></i></button><hr>
         {{ form_row(registrationForm.agreeTerms) }}
 
-        <button class="btn btn-primary" type="submit" class="btn">Register</button>
+        <button class="btn btn-primary" type="submit" class="btn">S'inscrire</button>
     {{ form_end(registrationForm) }}
 {% endblock %}

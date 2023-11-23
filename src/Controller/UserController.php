@@ -56,12 +56,18 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, UserRepository $userRepository, UserPasswordHasherInterface $userPasswordHasher): Response
+    public function edit(Request $request, User $user, UserRepository $userRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userRepository->save($user, true);
+
+            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+        }
 
         return $this->renderForm('user/edit.html.twig', [
             'user' => $user,

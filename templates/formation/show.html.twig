@@ -33,7 +33,7 @@
             </tr>
             <tr>
                 <th>{{'CreatedAt'|trans}}</th>
-                <td>{{ formation.createdAt ? formation.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>{{'Description'|trans}}</th>
@@ -41,11 +41,11 @@
             </tr>
             <tr>
                 <th>{{'StartDateTime'|trans}}</th>
-                <td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.startDateTime ? formation.startDateTime|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
                 <th>{{'EndDateTime'|trans}}</th>
-                <td>{{ formation.endDateTime ? formation.endDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.endDateTime ? formation.endDateTime|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
         </tbody>
     </table>

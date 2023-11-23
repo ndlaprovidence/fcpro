@@ -21,8 +21,8 @@
 				<div class="accordion-body">
                 <strong>{{'Price'|trans}} : </strong>{{ formation.price }}€<br>
                 <strong>{{'capacity'|trans}} : </strong>{{ formation.capacity }}<br>
-                <strong>{{'Start Date'|trans}} : </strong>{{ formation.startDateTime ? formation.startDateTime|date('Y/m/d') : '' }}<br>
-                <strong>{{'End Date'|trans}} : </strong>{{ formation.endDateTime ? formation.endDateTime|date('Y/m/d') : '' }}<br><br>
+                <strong>{{'Start Date'|trans}} : </strong>{{ formation.startDateTime ? formation.startDateTime|date('d/m/Y') : '' }}<br>
+                <strong>{{'End Date'|trans}} : </strong>{{ formation.endDateTime ? formation.endDateTime|date('d/m/Y') : '' }}<br><br>
 					{{ formation.content|raw  }}
 					<br>
 					<a href="/formation/pdf/{{ formation.id }}" class="btn btn-primary" target="_blank">PDF</a>

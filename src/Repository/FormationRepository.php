@@ -68,6 +68,15 @@ class FormationRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findFormationsWithStartDate()
+    {
+        return $this->createQueryBuilder('f')
+            ->where('f.startDateTime IS NOT NULL')
+            ->andWhere('f.validation = 1')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Formation[] Returns an array of Formation objects
 //     */

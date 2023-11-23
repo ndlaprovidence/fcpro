@@ -3,6 +3,7 @@
 {% block title %}Formations{% endblock %}
 
 {% block body %}
+
     <h1>Liste des formations</h1>
 
     <table class="table">
@@ -25,7 +26,7 @@
         <tbody>
         {% for formation in formations %}
             <tr>
-                <td>{{ formation.startDateTime ? formation.startDateTime|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ formation.startDateTime ? formation.startDateTime|date('d/m/Y H:i:s') : '' }}</td>
                 <td>{{ formation.id }}</td>
                 <td>{{ formation.name }}</td>
                 <td>{{ formation.validation }}</td>

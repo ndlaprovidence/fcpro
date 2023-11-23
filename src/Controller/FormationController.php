@@ -164,24 +164,13 @@ ne pourra avoir lieu.</i>
     */
 
     #[Route('/futur', name: 'app_formation_futur', methods: ['GET'])]
-    public function futur(FormationRepository $formationRepository): Response
+    public function formationsAvecDate(FormationRepository $formationRepository): Response
     {
-        $formationsPerThree = array();
+        $formations = $formationRepository->findFormationsWithStartDate();
 
-        $formations = $formationRepository->findThreeInTheFuture();
-
-        $i=1; $j=0;
-        foreach ($formations as $formation) {
-            $i++;
-            if ($i>3) {
-                $j++; $i=1;
-            }
-            $formationsPerThree[$j][$i] = $formation;
-        }
-        dump($formations);
-        dump($formationsPerThree);
-        
-        return $this->render('formation/futur.html.twig', ['formationsPerThree' => $formationsPerThree,]);
+        return $this->render('formation/futur.html.twig', [
+            'formations' => $formations,
+        ]);
     }
 
     #[Route('/catalog', name: 'app_formation_catalog', methods: ['GET'])]

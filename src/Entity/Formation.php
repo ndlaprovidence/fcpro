@@ -6,6 +6,8 @@ use App\Entity\User;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\FormationRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 #[ORM\Entity(repositoryClass: FormationRepository::class)]
 #[ORM\Table(name: "tbl_formation")]
@@ -78,6 +80,14 @@ class Formation
 
     #[ORM\Column(nullable: true)]
     private ?bool $validation = null;
+
+    #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Notation::class)]
+    private Collection $notations;
+
+    public function __construct()
+    {
+        $this->notations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -332,6 +342,33 @@ class Formation
     public function setValidation(?bool $validation): self
     {
         $this->validation = $validation;
+
+        return $this;
+    }
+
+    public function getNotations(): Collection
+    {
+        return $this->notations;
+    }
+
+    public function addNotation(Notation $notation): self
+    {
+        if (!$this->notations->contains($notation)) {
+            $this->notations[] = $notation;
+            $notation->setFormation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotation(Notation $notation): self
+    {
+        if ($this->notations->removeElement($notation)) {
+            // Définir le côté propriétaire sur null (sauf si déjà modifié)
+            if ($notation->getFormation() === $this) {
+                $notation->setFormation(null);
+            }
+        }
 
         return $this;
     }

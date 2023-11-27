@@ -13,28 +13,29 @@ class Notation
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $nom_formation = null;
+    #[ORM\ManyToOne(inversedBy: 'notations')]
+    private ?Formation $formation = null;
 
     #[ORM\Column(length: 255)]
     private ?string $user = null;
 
     #[ORM\Column]
     private ?int $note = null;
+    
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNomFormation(): ?string
+    public function getFormation(): ?Formation
     {
-        return $this->nom_formation;
+        return $this->formation;
     }
 
-    public function setNomFormation(string $nom_formation): self
+    public function setFormation(?Formation $formation): self
     {
-        $this->nom_formation = $nom_formation;
+        $this->formation = $formation;
 
         return $this;
     }

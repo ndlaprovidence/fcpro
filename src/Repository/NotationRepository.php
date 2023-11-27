@@ -32,6 +32,7 @@ class NotationRepository extends ServiceEntityRepository
 
     public function remove(Notation $entity, bool $flush = false): void
     {
+        dump("Suppression de la note avec l'ID : {$entity->getId()}");
         $this->getEntityManager()->remove($entity);
 
         if ($flush) {

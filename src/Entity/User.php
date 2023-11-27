@@ -41,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'createdBy', targetEntity: Formation::class)]
     private Collection $formationsCreatedBy;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Notation::class)]
+    private Collection $notations;
+
     public function __toString() {
         return $this->email;
     }
@@ -49,6 +52,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->formations = new ArrayCollection();
         $this->formationsCreatedBy = new ArrayCollection();
+        $this->notations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +191,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($formationsCreatedBy->getCreatedBy() === $this) {
                 $formationsCreatedBy->setCreatedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Notation>
+     */
+    public function getNotations(): Collection
+    {
+        return $this->notations;
+    }
+
+    public function addNotation(Notation $notation): self
+    {
+        if (!$this->notations->contains($notation)) {
+            $this->notations->add($notation);
+            $notation->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNotation(Notation $notation): self
+    {
+        if ($this->notations->removeElement($notation)) {
+            // set the owning side to null (unless already changed)
+            if ($notation->getUser() === $this) {
+                $notation->setUser(null);
             }
         }
 

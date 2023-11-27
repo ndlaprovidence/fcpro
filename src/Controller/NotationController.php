@@ -16,6 +16,8 @@ class NotationController extends AbstractController
     #[Route('/', name: 'app_notation_index', methods: ['GET'])]
     public function index(NotationRepository $notationRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
         return $this->render('notation/index.html.twig', [
             'notations' => $notationRepository->findAll(),
         ]);
@@ -24,25 +26,53 @@ class NotationController extends AbstractController
     #[Route('/new', name: 'app_notation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, NotationRepository $notationRepository): Response
     {
+        $user = $this->getUser();
+
+
+        // Créez une nouvelle note à partir des données du formulaire
         $notation = new Notation();
         $form = $this->createForm(Notation1Type::class, $notation);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $notationRepository->save($notation, true);
 
-            return $this->redirectToRoute('app_notation_index', [], Response::HTTP_SEE_OTHER);
+            $formationId = $notation->getFormation()->getid();
+            dump($formationId);
+            
+            if ($formationId > 0) {
+                // Gérez le cas où l'ID de la formation n'est pas présent.
+                // Vous pouvez rediriger ou afficher un message d'erreur.
+    
+                // Recherchez une note existante pour cette formation et cet utilisateur
+                $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
+                dump($existingNotation);
+        
+                // Supprimez l'ancienne note si elle existe
+                if ($existingNotation) {
+                    $notationRepository->remove($existingNotation, true);
+                    // Ajoutez cette ligne pour débogage
+                    dump("Ancienne note supprimée pour l'utilisateur : {$existingNotation->getUser()}");
+                }
+
+                // Save the new note
+                $notationRepository->save($existingNotation ?? $notation, true);
+
+                #return $this->redirectToRoute('app_notation_index', [], Response::HTTP_SEE_OTHER);
+            }
         }
 
         return $this->renderForm('notation/new.html.twig', [
-            'notation' => $notation,
             'form' => $form,
         ]);
     }
 
+
     #[Route('/{id}', name: 'app_notation_show', methods: ['GET'])]
     public function show(Notation $notation): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
         return $this->render('notation/show.html.twig', [
             'notation' => $notation,
         ]);
@@ -51,6 +81,8 @@ class NotationController extends AbstractController
     #[Route('/{id}/edit', name: 'app_notation_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Notation $notation, NotationRepository $notationRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+
         $form = $this->createForm(Notation1Type::class, $notation);
         $form->handleRequest($request);
 
@@ -69,6 +101,8 @@ class NotationController extends AbstractController
     #[Route('/{id}', name: 'app_notation_delete', methods: ['POST'])]
     public function delete(Request $request, Notation $notation, NotationRepository $notationRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
+        
         if ($this->isCsrfTokenValid('delete'.$notation->getId(), $request->request->get('_token'))) {
             $notationRepository->remove($notation, true);
         }

@@ -41,8 +41,6 @@ class NotationController extends AbstractController
             dump($formationId);
             
             if ($formationId > 0) {
-                // Gérez le cas où l'ID de la formation n'est pas présent.
-                // Vous pouvez rediriger ou afficher un message d'erreur.
     
                 // Recherchez une note existante pour cette formation et cet utilisateur
                 $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
@@ -55,10 +53,12 @@ class NotationController extends AbstractController
                     dump("Ancienne note supprimée pour l'utilisateur : {$existingNotation->getUser()}");
                 }
 
+                dump($notation);
                 // Save the new note
-                $notationRepository->save($existingNotation ?? $notation, true);
+                $notationRepository->save($notation, true);
+                dump($notationRepository);
 
-                #return $this->redirectToRoute('app_notation_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_page_show', ['id' => 1]);
             }
         }
 

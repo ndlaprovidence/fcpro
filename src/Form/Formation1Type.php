@@ -48,8 +48,8 @@ class Formation1Type extends AbstractType
         $builder->add('createdBy');
         //Partie PDF
         $builder->add('objectif', CKEditorType::class, ['required' => false]);
-        $builder->add('prerequis', CKEditorType::class, ['required' => false]);
-        $builder->add('moyenPedagogique', CKEditorType::class, ['required' => false]);
+        $builder->add('prerequis', CKEditorType::class, ['required' => false, 'label' => 'Prérequis']);
+        $builder->add('moyenPedagogique', CKEditorType::class, ['required' => false, 'label' => 'Moyen pédagogique']);
         $builder->add('evaluation', CKEditorType::class, ['required' => false, 'label' => 'Méthode d\'évaluation']);
         $builder->add('modalites', CKEditorType::class, ['required' => false, 'label' => 'Modalités']);
         $builder->add('format', CKEditorType::class, ['required' => false, 'label' => 'Format (champ modalités dans la partie grise à gauche du pdf)']);

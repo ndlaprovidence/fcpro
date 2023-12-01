@@ -23,6 +23,18 @@
                 <strong>{{'capacity'|trans}} : </strong>{{ formation.capacity }}<br>
                 <strong>{{'Start Date'|trans}} : </strong>{{ formation.startDateTime ? formation.startDateTime|date('d/m/Y') : '' }}<br>
                 <strong>{{'End Date'|trans}} : </strong>{{ formation.endDateTime ? formation.endDateTime|date('d/m/Y') : '' }}<br><br>
+				{% set totalNotes = 0 %}
+				{% set countNotes = 0 %}
+				{% for notation in formation.notations %}
+					{% set totalNotes = totalNotes + notation.note %}
+					{% set countNotes = countNotes + 1 %}
+				{% endfor %}
+
+				{% if countNotes > 0 %}
+					<p><strong>Notes moyennes:</strong> {{ totalNotes / countNotes }}<strong> /5</strong></p>
+				{% else %}
+					<p><strong>Aucune note disponible.</strong></p>
+				{% endif %}<br><br>
 					{{ formation.content|raw  }}
 					<br>
 					<a href="/formation/pdf/{{ formation.id }}" class="btn btn-primary" target="_blank">PDF</a>

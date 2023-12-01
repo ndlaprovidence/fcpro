@@ -26,6 +26,8 @@ class NotationController extends AbstractController
     #[Route('/new', name: 'app_notation_new', methods: ['GET', 'POST'])]
     public function new(Request $request, NotationRepository $notationRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
+        
         $user = $this->getUser();
 
 

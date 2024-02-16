@@ -8,10 +8,6 @@
     <table class="table">
         <tbody>
             <tr>
-                <th>{{'Id'|trans}}</th>
-                <td>{{ formation.id }}</td>
-            </tr>
-            <tr>
                 <th>{{'Name'|trans}}</th>
                 <td>{{ formation.name }}</td>
             </tr>
@@ -20,11 +16,11 @@
                 <td>{{ formation.content|raw }}</td>
             </tr>
             <tr>
-                <th>{{'CapacityMin'|trans}}</th>
+                <th>Capacité minimum</th>
                 <td>{{ formation.capacityMin }}</td>
             </tr>
             <tr>
-                <th>{{'Capacity'|trans}}</th>
+                <th>Capacité maximum</th>
                 <td>{{ formation.capacity }}</td>
             </tr>
             <tr>
@@ -32,11 +28,11 @@
                 <td>{{ formation.price }}</td>
             </tr>
             <tr>
-                <th>{{'CreatedAt'|trans}}</th>
+                <th>Créée le</th>
                 <td>{{ formation.createdAt ? formation.createdAt|date('d/m/Y H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>{{'Description'|trans}}</th>
+                <th>Objectifs</th>
                 <td>{{ formation.description }}</td>
             </tr>
             <tr>

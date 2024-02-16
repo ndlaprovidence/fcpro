@@ -43,10 +43,10 @@ class Formation
     private ?string $description = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $startDateTime = null;
+    private ?\DateTime $startDateTime = null;
 
     #[ORM\Column(nullable: true)]
-    private ?\DateTimeImmutable $endDateTime = null;
+    private ?\DateTime $endDateTime = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_file_name = null;
@@ -190,24 +190,24 @@ class Formation
         return $this;
     }
 
-    public function getStartDateTime(): ?\DateTimeImmutable
+    public function getStartDateTime(): ?\DateTime
     {
         return $this->startDateTime;
     }
 
-    public function setStartDateTime(?\DateTimeImmutable $startDateTime): self
+    public function setStartDateTime(?\DateTime $startDateTime): self
     {
         $this->startDateTime = $startDateTime;
 
         return $this;
     }
 
-    public function getEndDateTime(): ?\DateTimeImmutable
+    public function getEndDateTime(): ?\DateTime
     {
         return $this->endDateTime;
     }
 
-    public function setEndDateTime(?\DateTimeImmutable $endDateTime): self
+    public function setEndDateTime(?\DateTime $endDateTime): self
     {
         $this->endDateTime = $endDateTime;
 

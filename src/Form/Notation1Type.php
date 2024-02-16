@@ -17,14 +17,12 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class Notation1Type extends AbstractType
 {
     private Security $security;
-    private EntityManagerInterface $entityManager;  // Assurez-vous que c'est bien Doctrine\ORM\EntityManagerInterface
 
-    public function __construct(Security $security, EntityManagerInterface $entityManager)
+    public function __construct(Security $security)
     {
         $this->security = $security;
-        $this->entityManager = $entityManager;
     }
-    
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $user = $this->security->getUser();
@@ -32,7 +30,7 @@ class Notation1Type extends AbstractType
         $builder
             ->add('formation', EntityType::class, [
                 'class' => Formation::class,
-                'query_builder' => function(FormationRepository $er) {
+                'query_builder' => function (FormationRepository $er) {
                     return $er->createQueryBuilder('f')
                         ->andWhere('f.validation = :validation')
                         ->setParameter('validation', 1);
@@ -42,15 +40,9 @@ class Notation1Type extends AbstractType
             ->add('user', HiddenType::class, [
                 'data' => $user,
             ])
-            ->add('note', ChoiceType::class, [
-                'choices' => [
-                    '1' => 1,
-                    '2' => 2,
-                    '3' => 3,
-                    '4' => 4,
-                    '5' => 5,
-                ],
-                'placeholder' => 'Choisir une note', // Optionnel, ajoutez ceci si vous voulez un libellé de choix par défaut
+            ->add('note', HiddenType::class, [
+                'data' => 1, // La valeur par défaut peut être modifiée si nécessaire
+                'attr' => ['class' => 'selected-rating'], // Ajout de la classe CSS
             ]);
     }
 

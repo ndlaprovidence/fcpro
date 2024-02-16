@@ -1,4 +1,52 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn btn-primary mt-3">{{ button_label|default('Valider') }}</button>
+
+{{ form_row(form.formation) }}
+
+<style>
+#star-rating .fas.selected {
+    color: gold;
+}
+.fa-star:hover {
+    color: #B7950B;
+}
+</style>
+
+<div id="star-rating">
+    <i>Peu utile</i>
+    {% for i in 1..6 %}
+        <i class="fas fa-star" data-rating="{{ i }}"></i>
+    {% endfor %}
+    <i>Très utile</i>
+</div>
+
+{{ form_row(form.note, {'attr': {'style': 'display: none;' }}) }}
+
+<button class="btn btn-primary mt-3">{{ button_label|default('Valider') }}</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let stars = document.querySelectorAll('.fa-star');
+
+        stars.forEach(function (star) {
+            star.addEventListener('click', function () {
+                let rating = this.getAttribute('data-rating');
+                document.querySelector('.selected-rating').value = rating;
+
+                // Ajoutez le style ou la classe pour indiquer quelle étoile a été sélectionnée
+                stars.forEach(function (s) {
+                    s.classList.remove('selected');
+                });
+
+                this.classList.add('selected');
+
+                // Colore les étoiles précédentes
+                let selectedStarIndex = Array.from(stars).indexOf(this);
+                for (let i = 0; i <= selectedStarIndex; i++) {
+                    stars[i].classList.add('selected');
+                }
+            });
+        });
+    });
+</script>
+
 {{ form_end(form) }}

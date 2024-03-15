@@ -191,7 +191,7 @@
       </trans-unit>
       <trans-unit id="7CGzuXO" resname="capacity">
         <source>capacity</source>
-        <target>Capacité</target>
+        <target>Capacité maximum</target>
       </trans-unit>
       <trans-unit id="TFL6rV3" resname="Start Date">
         <source>Start Date</source>

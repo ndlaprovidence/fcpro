@@ -59,7 +59,7 @@ class DatePDFController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_date_p_d_f_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_formation_index');
         }
 
         return $this->render('date_pdf/edit.html.twig', [

@@ -2,15 +2,12 @@
 
 namespace App\Controller;
 
-
-use App\Entity\MyPdf;
-use App\Entity\Rating;
+use TCPDF;
 use DateTimeImmutable;
-use App\Entity\DatePDF;
-use App\Form\RatingType;
 use App\Entity\Formation;
-use App\Form\Formation1Type;
+use App\Entity\DatePDF;
 use App\Repository\DatePDFRepository;
+use App\Form\Formation1Type;
 use App\Services\ImageUploaderHelper;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,6 +16,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Rating;
+use App\Form\RatingType;
 
 #[Route('/formation')]
 class FormationController extends AbstractController
@@ -30,14 +29,14 @@ class FormationController extends AbstractController
         $dateCreation = $datePDF->getDateCreation();
         $dateModif = $datePDF->getDateModif();
         
-        $pdf = new MyPdf();
-        $pdf->setFormation($formation);
+        $pdf = new \TCPDF();
+
         $pdf->SetAuthor('SIO TEAM ! 💻');
         $pdf->SetTitle($formation->getName());
         $pdf->SetFont('times', '', 14);
         $pdf->setCellPaddings(1, 1, 1, 1);
         $pdf->setCellMargins(1, 1, 1, 1);
-        // $pdf->setPrintHeader(false);
+        $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
 
         $pdf->AddPage();
@@ -61,54 +60,52 @@ class FormationController extends AbstractController
         $pdf->setCellPaddings(3,3,3,3);
 
         // COLONNE GAUCHE
-//         $textg = '
-//         <style> .blue { color: rgb(0, 63,144); } .link { color: rgb(100,0,0); }</style>
-//         <br>
-//         <p class="blue">
-// <b>Tarifs :</b></p>
-// '. $formation->getPrice() .' € net.
-//         <p class="blue">
-// <b>Modalités :</b>
-//         </p>
-// '. $formation->getFormat() .'
-//         <p class="blue">
-// <b>Accessibilité aux personnes handicapées :</b>
-// </p><p>
-// <b>Accès au lieu de formation</b> :<br>
-// Les locaux sont accessibles aux
-// personnes en situation de handicap,
-// merci de nous contacter.<br>
-// <br>
-// <b>Accès à la prestation</b> :<br>
-// Une adaptation de la formation est
-// possible pour les personnes en
-// situation de handicap, merci de nous
-// contacter.
-//         </p>
-//         <p class="blue">
-// <b>Contact :</b>
-//         </p><p>
-// <b>Alexia HEBERT, responsable de FCPRO</b><br>
-// Service de Formation Professionnelle<br>
-// Continue de l’OGEC Notre Dame de la Providence<br>
-// <br>
-// 9, rue chanoine Bérenger BP 340, 50300 AVRANCHES.<br>
-// Tel 02 33 58 02 22<br>
-// mail : <span class="link">fcpro@ndlpavranches.fr</span><br>
-// <br>
-// N° activité 25500040250<br>
-// OF certifié QUALIOPI pour les actions de formations<br>
-// <br>
-// Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
-//         </p>';
+        $textg = '
+        <style> .blue { color: rgb(0, 63,144); } .link { color: rgb(100,0,0); }</style>
+        <br>
+        <p class="blue">
+<b>Tarifs :</b></p>
+'. $formation->getPrice() .' € net.
+        <p class="blue">
+<b>Modalités :</b>
+        </p>
+'. $formation->getFormat() .'
+        <p class="blue">
+<b>Accessibilité aux personnes handicapées :</b>
+</p><p>
+<b>Accès au lieu de formation</b> :<br>
+Les locaux sont accessibles aux
+personnes en situation de handicap,
+merci de nous contacter.<br>
+<br>
+<b>Accès à la prestation</b> :<br>
+Une adaptation de la formation est
+possible pour les personnes en
+situation de handicap, merci de nous
+contacter.
+        </p>
+        <p class="blue">
+<b>Contact :</b>
+        </p><p>
+<b>Alexia HEBERT, responsable de FCPRO</b><br>
+Service de Formation Professionnelle<br>
+Continue de l’OGEC Notre Dame de la Providence<br>
+<br>
+9, rue chanoine Bérenger BP 340, 50300 AVRANCHES.<br>
+Tel 02 33 58 02 22<br>
+mail : <span class="link">fcpro@ndlpavranches.fr</span><br>
+<br>
+N° activité 25500040250<br>
+OF certifié QUALIOPI pour les actions de formations<br>
+<br>
+Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
+        </p>';
 
-//         $pdf->SetFont('helvetica', '', 10);
-//         $pdf->SetFillColor(225,225,230);
-//         $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
+        $pdf->SetFont('helvetica', '', 10);
+        $pdf->SetFillColor(225,225,230);
+        $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
 
         //--------
-
-$pdf->setX(75);
 
         $textd = '
         <style>hr { color: rgb(0, 63,144); }</style>

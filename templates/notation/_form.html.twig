@@ -2,10 +2,6 @@
 
 {{ form_row(form.formation) }}
 
-<<<<<<< HEAD
-<div id="star-rating">
-    <i>Aucune utilité</i>
-=======
 <style>
 #star-rating .fas.selected {
     color: gold;
@@ -17,7 +13,6 @@
 
 <div id="star-rating">
     <i>Peu utile</i>
->>>>>>> e306f994fdf0713a3a6c97ccbcaabb2aabcc49a0
     {% for i in 1..6 %}
         <i class="fas fa-star" data-rating="{{ i }}"></i>
     {% endfor %}
@@ -54,8 +49,4 @@
     });
 </script>
 
-<<<<<<< HEAD
 {{ form_end(form) }}
-=======
-{{ form_end(form) }}
->>>>>>> e306f994fdf0713a3a6c97ccbcaabb2aabcc49a0

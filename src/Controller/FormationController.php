@@ -39,7 +39,11 @@ class FormationController extends AbstractController
         $pdf->SetFont('helvetica', 'B', 20);
         $pdf->SetFillColor(160,222,255);
         $pdf->SetTextColor(0, 63,144);
+<<<<<<< HEAD
         $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', 'https://fcpro-rtirbois.bts.sio-ndlp.fr/page/1', '', true, 150, '', false, false, 0, false, false, false);
+=======
+        $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', '/page/1', '', true, 150, '', false, false, 0, false, false, false);
+>>>>>>> e306f994fdf0713a3a6c97ccbcaabb2aabcc49a0
         $pdf->MultiCell(148, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '48', '', true, 0, false, true, 20, 'M');
 
         $pdf->SetFont('helvetica', 'B', 17);

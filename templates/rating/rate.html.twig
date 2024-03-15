@@ -1,0 +1,15 @@
+{# templates/formation/rate.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Noter la formation{% endblock %}
+
+{% block body %}
+    <h1>Noter la formation</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+
+    <button type="submit">Noter</button>
+    {{ form_end(form) }}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DatePDF index{% endblock %}
+
+{% block body %}
+    <h1>DatePDF index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateCreation</th>
+                <th>DateModif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for date_p_d_f in date_p_d_fs %}
+            <tr>
+                <td>{{ date_p_d_f.id }}</td>
+                <td>{{ date_p_d_f.dateCreation ? date_p_d_f.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ date_p_d_f.dateModif ? date_p_d_f.dateModif|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_date_p_d_f_show', {'id': date_p_d_f.id}) }}">show</a>
+                    <a href="{{ path('app_date_p_d_f_edit', {'id': date_p_d_f.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_date_p_d_f_new') }}">Create new</a>
+{% endblock %}

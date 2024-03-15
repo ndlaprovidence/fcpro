@@ -14,6 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Rating;
+use App\Form\RatingType;
 
 #[Route('/formation')]
 class FormationController extends AbstractController
@@ -38,12 +40,12 @@ class FormationController extends AbstractController
         $pdf->SetFillColor(160,222,255);
         $pdf->SetTextColor(0, 63,144);
         $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', 'https://fcpro-rtirbois.bts.sio-ndlp.fr/page/1', '', true, 150, '', false, false, 0, false, false, false);
-        $pdf->MultiCell(187, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '', '', true, 0, false, true, 20, 'M');
+        $pdf->MultiCell(148, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '48', '', true, 0, false, true, 20, 'M');
 
         $pdf->SetFont('helvetica', 'B', 17);
         $pdf->SetFillColor(225,225,230);
         $pdf->SetTextColor(0,0,0);
-        $pdf->MultiCell(187, 10, $formation->getName(), 0, 'C', 1, 1, '', '', true);
+        $pdf->MultiCell(148, 10, $formation->getName(), 0, 'C', 1, 1, '48', '', true);
         
         $pdf->setCellPaddings(3,3,3,3);
         $textg = '
@@ -95,7 +97,7 @@ Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
 
         $textd = '
         <style>hr { color: rgb(0, 63,144); }</style>
-        <p><b>Objectif de la formation</b>
+        <p><b>Objectifs de la formation</b>
         <hr>'. $formation->getObjectif() .'
         <b>Prérequis necessaire / public visé</b>
         <hr>'. $formation->getPrerequis() .'
@@ -267,5 +269,30 @@ ne pourra avoir lieu.</i>
         }
 
         return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/{id}/rate', name: 'app_formation_rate', methods: ['GET', 'POST'])]
+    public function rate(Request $request, Formation $formation): Response
+    {
+        $rating = new Rating();
+        $rating->setFormation($formation);
+
+        $form = $this->createForm(RatingType::class, $rating);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($rating);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Votre notation a été enregistrée avec succès.');
+
+            return $this->redirectToRoute('app_formation_show', ['id' => $formation->getId()]);
+        }
+
+        return $this->render('formation/rate.html.twig', [
+            'form' => $form->createView(),
+            'formation' => $formation,
+        ]);
     }
 }

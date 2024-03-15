@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}DatePDF{% endblock %}
+
+{% block body %}
+    <h1>DatePDF</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ date_p_d_f.id }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ date_p_d_f.dateCreation ? date_p_d_f.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateModif</th>
+                <td>{{ date_p_d_f.dateModif ? date_p_d_f.dateModif|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_date_p_d_f_index') }}">back to list</a>
+
+    <a href="{{ path('app_date_p_d_f_edit', {'id': date_p_d_f.id}) }}">edit</a>
+
+    {{ include('date_pdf/_delete_form.html.twig') }}
+{% endblock %}

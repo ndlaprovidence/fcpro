@@ -31,16 +31,15 @@ class Formation1Type extends AbstractType
         $builder->add('price');
         // $builder->add('createdAt');
         $builder->add('description');
-        $builder->add('startDateTime',  DateType::class, [
+        $builder->add('startDateTime', DateTimeType::class, [
             'widget' => 'single_text',
-            'format' => 'yyyy-MM-dd',
-            'input' => 'datetime_immutable',
+            'html5' => true,
             'required' => false, 
         ]);
-        $builder->add('endDateTime', DateType::class, [
+
+        $builder->add('endDateTime', DateTimeType::class, [
             'widget' => 'single_text',
-            'format' => 'yyyy-MM-dd',
-            'input' => 'datetime_immutable',
+            'html5' => true,
             'required' => false, 
         ]);
         $builder->add('place');

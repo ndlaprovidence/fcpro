@@ -20,6 +20,9 @@ class DatePDF
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateModif = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $numMaj = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +48,18 @@ class DatePDF
     public function setDateModif(?\DateTimeInterface $dateModif): static
     {
         $this->dateModif = $dateModif;
+
+        return $this;
+    }
+
+    public function getNumMaj(): ?int
+    {
+        return $this->numMaj;
+    }
+
+    public function setNumMaj(?int $numMaj): static
+    {
+        $this->numMaj = $numMaj;
 
         return $this;
     }

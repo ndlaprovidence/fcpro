@@ -42,23 +42,24 @@ class FormationController extends AbstractController
 
         $pdf->AddPage();
 
-        $texthead = '<style>.head {text-align: right; font-size: 10px;}</style><span class="head">Création du PDF : ' . $dateCreation->format('d-m-Y') . ' / Dernière modification : ' . $dateModif->format('d-m-Y') . ' </span>';
-        $pdf->writeHTMLCell(0, 20, '', '', $texthead, 0, 0, 0, true, '', true);
+        // text-align: right; 
+        $texthead = '<style>.head {font-size: 7px;}</style><span class="head"><i>Date création : ' . $dateCreation->format('d-m-Y') . ' / MAJ N°'. $datePDF->getNumMaj() .' : ' . $dateModif->format('d-m-Y') . '</i> </span>';
+        $pdf->writeHTMLCell(0, 20, 5, 0, $texthead, 0, 0, 0, true, '', true);
         
-        $pdf->SetFont('helvetica', 'B', 20);
-        $pdf->SetFillColor(160,222,255);
-        $pdf->SetTextColor(0, 63,144);
-        $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', '/page/1', '', true, 150, '', false, false, 0, false, false, false);
-        $pdf->MultiCell(148, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '48', '', true, 0, false, true, 20, 'M');
-        // $pdf->writeHTMLCell(65, 230, "", "", $dateCreation->format('Y-m-d'), 0, 0, 1, true, '', true);
-        // $pdf->writeHTMLCell(65, 230, "", "", $dateModif->format('Y-m-d'), 0, 0, 1, true, '', true);
+        // $pdf->SetFont('helvetica', 'B', 20);
+        // $pdf->SetFillColor(160,222,255);
+        // $pdf->SetTextColor(0, 63,144);
+        // $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', '/page/1', '', true, 150, '', false, false, 0, false, false, false);
+        // $pdf->MultiCell(148, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '48', '', true, 0, false, true, 20, 'M');
+        // // $pdf->writeHTMLCell(65, 230, "", "", $dateCreation->format('Y-m-d'), 0, 0, 1, true, '', true);
+        // // $pdf->writeHTMLCell(65, 230, "", "", $dateModif->format('Y-m-d'), 0, 0, 1, true, '', true);
 
-        $pdf->SetFont('helvetica', 'B', 17);
-        $pdf->SetFillColor(225,225,230);
-        $pdf->SetTextColor(0,0,0);
-        $pdf->MultiCell(148, 10, $formation->getName(), 0, 'C', 1, 1, '48', '', true);
+        // $pdf->SetFont('helvetica', 'B', 17);
+        // $pdf->SetFillColor(225,225,230);
+        // $pdf->SetTextColor(0,0,0);
+        // $pdf->MultiCell(148, 10, $formation->getName(), 0, 'C', 1, 1, '48', '', true);
         
-        $pdf->setCellPaddings(3,3,3,3);
+        // $pdf->setCellPaddings(3,3,3,3);
 
         // COLONNE GAUCHE
 //         $textg = '
@@ -107,7 +108,7 @@ class FormationController extends AbstractController
 //         $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
 
         //--------
-
+        $pdf->setY(45);
 $pdf->setX(75);
 
         $textd = '

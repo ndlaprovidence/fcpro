@@ -1,4 +1,14 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.dateModif, {'label': 'Date de MAJ'}, {'attr': {'class': 'datepicker'}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.numMaj, {'label': 'Numéro de la MAJ'}) }}
+        </div>
+    </div>
+
     <button class="btn btn-primary mt-3">{{ button_label|default('Enregistrer') }}</button>
+
 {{ form_end(form) }}

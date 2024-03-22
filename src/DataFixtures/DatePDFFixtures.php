@@ -17,6 +17,7 @@ class DatePDFFixtures extends Fixture
         $date = new DatePDF();
         $date->setDateCreation($dateaTime);
         $date->setDateModif($dateaTime);
+        $date->setNumMaj(1);
         $manager->persist($date);
 
         $manager->flush();

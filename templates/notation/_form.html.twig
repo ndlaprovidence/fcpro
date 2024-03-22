@@ -10,13 +10,13 @@
     color: #B7950B;
 }
 </style>
-
+À quel point êtes-vous satisfait(e) par la formation ? 
 <div id="star-rating">
-    <i>Peu utile</i>
+    <i>Insatisfait(e)</i>
     {% for i in 1..6 %}
         <i class="fas fa-star" data-rating="{{ i }}"></i>
     {% endfor %}
-    <i>Très utile</i>
+    <i>Satisfait(e)</i>
 </div>
 
 {{ form_row(form.note, {'attr': {'style': 'display: none;' }}) }}

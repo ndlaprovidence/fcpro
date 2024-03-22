@@ -12,7 +12,6 @@ class DatePDF1Type extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateCreation')
             ->add('dateModif')
         ;
     }

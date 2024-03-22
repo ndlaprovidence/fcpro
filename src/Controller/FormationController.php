@@ -108,7 +108,7 @@ class FormationController extends AbstractController
 //         $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
 
         //--------
-        $pdf->setY(45);
+$pdf->setY(45);
 $pdf->setX(75);
 
         $textd = '

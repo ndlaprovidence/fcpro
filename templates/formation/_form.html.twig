@@ -118,6 +118,15 @@ la date de début de formation.</b>'}) }}
         </div>
     </div>
 
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.accessibilite) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.contact) }} 
+        </div>
+    </div>
+
     <button class="btn btn-primary mt-3">{{ button_label|default('Créer') }}</button>
     <a class="btn btn-secondary mt-3" href="{{ path('app_formation_index') }}">Revenir à la liste</a>
 {{ form_end(form) }}

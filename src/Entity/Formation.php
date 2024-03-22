@@ -84,6 +84,12 @@ class Formation
     #[ORM\OneToMany(mappedBy: 'formation', targetEntity: Notation::class)]
     private Collection $notations;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $accessibilite = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $contact = null;
+
     public function __construct()
     {
         $this->notations = new ArrayCollection();
@@ -369,6 +375,30 @@ class Formation
                 $notation->setFormation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAccessibilite(): ?string
+    {
+        return $this->accessibilite;
+    }
+
+    public function setAccessibilite(?string $accessibilite): static
+    {
+        $this->accessibilite = $accessibilite;
+
+        return $this;
+    }
+
+    public function getContact(): ?string
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?string $contact): static
+    {
+        $this->contact = $contact;
 
         return $this;
     }

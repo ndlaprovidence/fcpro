@@ -43,7 +43,7 @@ class FormationController extends AbstractController
         $pdf->AddPage();
 
         // text-align: right; 
-        $texthead = '<style>.head {font-size: 7px;}</style><span class="head"><i>Date création : ' . $dateCreation->format('d-m-Y') . ' / MAJ N°'. $datePDF->getNumMaj() .' : ' . $dateModif->format('d-m-Y') . '</i> </span>';
+        $texthead = '<style>.head {font-size: 7px;}</style><span class="head"><i>Date création : 01-09-2022 / MAJ N°'. $datePDF->getNumMaj() .' : ' . $dateModif->format('d-m-Y') . '</i> </span>';
         $pdf->writeHTMLCell(0, 20, 5, 0, $texthead, 0, 0, 0, true, '', true);
         
         // $pdf->SetFont('helvetica', 'B', 20);
@@ -115,7 +115,7 @@ $pdf->setX(75);
         <style>hr { color: rgb(0, 63,144); }</style>
         <p><b>Objectifs de la formation</b>
         <hr>'. $formation->getObjectif() .'
-        <b>Prérequis necessaire / public visé</b>
+        <b>Prérequis necessaires / public cible</b>
         <hr>'. $formation->getPrerequis() .'
         <b>Modalités d\'accès et d\'inscription</b>
         <hr><br><div></div>

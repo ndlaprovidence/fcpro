@@ -12,7 +12,7 @@ class DatePDFFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         
-        $datea = '2024-01-01';
+        $datea = '2022-09-01';
         $dateaTime = new DateTime($datea);
         $date = new DatePDF();
         $date->setDateCreation($dateaTime);

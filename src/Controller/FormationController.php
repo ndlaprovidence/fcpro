@@ -39,6 +39,7 @@ class FormationController extends AbstractController
         $pdf->setCellMargins(1, 1, 1, 1);
         // $pdf->setPrintHeader(false);
         $pdf->setPrintFooter(false);
+        // $pdf->SetHeaderMargin(45);
 
         $pdf->AddPage();
 
@@ -108,8 +109,8 @@ class FormationController extends AbstractController
 //         $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
 
         //--------
-$pdf->setY(45);
-$pdf->setX(75);
+        $pdf->setY(45);
+        $pdf->setX(75);
 
         $textd = '
         <style>hr { color: rgb(0, 63,144); }</style>
@@ -129,15 +130,31 @@ ne pourra avoir lieu.</i>
 
 '. $formation->getModalites() .'<br>
 <b>Moyens pédagogiques et techniques</b>
-        <hr>'. $formation->getMoyenPedagogique() .'<br>
-<b>Modalité d\'évaluation</b>
-        <hr>'. $formation->getEvaluation() .'
-        ';
+        <hr>'. $formation->getMoyenPedagogique() .'<br>';
 
         $pdf->SetFont('helvetica', '', 10);
         $pdf->SetFillColor(255,255,255);
-        $pdf->writeHTMLCell(120, 230, "", "", $textd, 0, 0, 1, true, '', true);
 
+        $pdf->writeHTMLCell(120, 50, "", "", $textd, 0, 1, 1, true, '', true);
+        
+        
+        // Modalité d'évaluation
+        $textd = '<b>Modalité d\'évaluation</b>
+        <hr>'. $formation->getEvaluation() .'
+        ';        
+        $heightTextd = $pdf->getStringHeight(120, $textd);
+
+        if ($heightTextd > 40) {
+            $pdf->addPage();
+            $currentY = 45;
+        } else {
+            $currentY = $pdf->getY();
+        }
+        
+        $pdf->setX(75);        
+        $pdf->writeHTMLCell(120, 20, 75, $currentY, $textd, 0, 0, 1, true, '', true);
+
+        // Générer le PDF pour l'afficher dans la page
         return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
     }
 

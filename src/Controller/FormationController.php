@@ -139,7 +139,7 @@ ne pourra avoir lieu.</i>
         
         
         // Modalité d'évaluation
-        $textd = '<b>Modalité d\'évaluation</b>
+        $textd = '<style>hr { color: rgb(0, 63,144); }</style><b>Modalité d\'évaluation</b>
         <hr>'. $formation->getEvaluation() .'
         ';        
         $heightTextd = $pdf->getStringHeight(120, $textd);
@@ -155,7 +155,7 @@ ne pourra avoir lieu.</i>
         $pdf->writeHTMLCell(120, 20, 75, $currentY, $textd, 0, 0, 1, true, '', true);
 
         // Générer le PDF pour l'afficher dans la page
-        return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
+        return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','D');
     }
 
     #[Route('/{id}/duplicate', name: 'app_formation_duplicate', methods: ['GET', 'POST'])]

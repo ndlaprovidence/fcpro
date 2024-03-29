@@ -156,7 +156,10 @@ ne pourra avoir lieu.</i>
 
         // Générer le PDF pour l'afficher dans la page
         //return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
-        return new Response($pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I'));
+
+        $response = new Response($pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I'));
+        $response->headers->set('Content-Type', 'application/pdf');
+        return $response;
 
     }
 

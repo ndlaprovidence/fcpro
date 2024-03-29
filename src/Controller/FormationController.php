@@ -155,7 +155,9 @@ ne pourra avoir lieu.</i>
         $pdf->writeHTMLCell(120, 20, 75, $currentY, $textd, 0, 0, 1, true, '', true);
 
         // Générer le PDF pour l'afficher dans la page
-        return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
+        //return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
+        return new Response($pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I'));
+
     }
 
     #[Route('/{id}/duplicate', name: 'app_formation_duplicate', methods: ['GET', 'POST'])]

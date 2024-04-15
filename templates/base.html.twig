@@ -35,6 +35,21 @@
     .qualiopi {
       z-index: 2;
       position: fixed;
+      padding:10px;
+      
+    }
+    .tblqualiopi {
+      background-color: white;
+    }
+    .tblqualiopi > td {
+      padding: 3px;
+    }
+    .bgdark {
+        background-color: #000731; /* Couleur de fond de la barre de navigation */
+    }
+
+    .bd-footer a {
+        color: #29ADE3; /* Couleur du texte des liens dans le footer */
     }
   </style>
 </head>
@@ -49,7 +64,7 @@
     data-abc="true"></a>
 
   <!--Navbar-->
-  <nav class="navbar navbar-expand-lg bg-dark text-white fixed-top">
+  <nav class="navbar navbar-expand-lg bgdark text-white fixed-top">
     <div class="container-fluid">
 
       <!--Logo-->
@@ -153,22 +168,19 @@
 
   <br><br>
 
-<div class="qualiopi px-md-3 py-md-5">
+<div class="qualiopi px-md-3 py-md-5" style="top: 77%; left: 0;">
 
-  <table>
+  <table class="tblqualiopi">
 
     <tr>
-      <td width=72px><img src="/images/fcpro.png" width=72px></img></td>
       <td><img src="/images/LogoQualiopi-72dpi-Avec-Marianne.png"></img><td>
     </tr>
 
     <tr>
-      <td></td>
       <td colspan=2 style="color:rgb(0,0,145);line-height:6px;text-align:center;" width=144px><font size=1>La certification qualité a été délivrée au titre de la catégorie d'action suivante :</font></td>
     </tr>
 
     <tr>
-    <td></td>
       <td colspan=2 style="color:rgb(225,0,15);line-height:12px;text-align:center;"><font size=1><b>ACTIONS DE FORMATION<b></font></td>
     </tr>
 
@@ -190,7 +202,7 @@
     </footer> #}
 
   </div>
-<footer class="bd-footer py-4 py-md-5 mt-5 bg-dark">
+<footer class="bd-footer py-4 py-md-5 mt-5 bgdark">
   <div class="container py-4 py-md-5 px-4 px-md-3 text-white">
     <div class="row">
       <div class="col-lg-3 mb-3">

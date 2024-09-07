@@ -39,9 +39,9 @@ class PageController extends AbstractController
             return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('page/new.html.twig', [
+        return $this->render('page/new.html.twig', [
             'page' => $page,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -67,9 +67,9 @@ class PageController extends AbstractController
             return $this->redirectToRoute('app_page_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('page/edit.html.twig', [
+        return $this->render('page/edit.html.twig', [
             'page' => $page,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

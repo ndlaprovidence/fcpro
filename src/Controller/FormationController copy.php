@@ -231,9 +231,9 @@ ne pourra avoir lieu.</i>
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('formation/new.html.twig', [
+        return $this->render('formation/new.html.twig', [
             'formation' => $formation,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -264,9 +264,9 @@ ne pourra avoir lieu.</i>
             return $this->redirectToRoute('app_formation_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('formation/edit.html.twig', [
+        return $this->render('formation/edit.html.twig', [
             'formation' => $formation,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

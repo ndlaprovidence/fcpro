@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Notation;
-use App\Form\Notation1Type;
+use App\Form\NotationType;
 use App\Repository\NotationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +33,7 @@ class NotationController extends AbstractController
 
         // Créez une nouvelle note à partir des données du formulaire
         $notation = new Notation();
-        $form = $this->createForm(Notation1Type::class, $notation);
+        $form = $this->createForm(NotationType::class, $notation);
 
         $form->handleRequest($request);
 
@@ -64,8 +64,8 @@ class NotationController extends AbstractController
             }
         }
 
-        return $this->renderForm('notation/new.html.twig', [
-            'form' => $form,
+        return $this->render('notation/new.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 
@@ -85,7 +85,7 @@ class NotationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-        $form = $this->createForm(Notation1Type::class, $notation);
+        $form = $this->createForm(NotationType::class, $notation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -94,9 +94,9 @@ class NotationController extends AbstractController
             return $this->redirectToRoute('app_notation_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('notation/edit.html.twig', [
+        return $this->render('notation/edit.html.twig', [
             'notation' => $notation,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

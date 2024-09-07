@@ -34,9 +34,9 @@ class NameController extends AbstractController
             return $this->redirectToRoute('app_name_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('name/new.html.twig', [
+        return $this->render('name/new.html.twig', [
             'category' => $category,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -60,9 +60,9 @@ class NameController extends AbstractController
             return $this->redirectToRoute('app_name_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('name/edit.html.twig', [
+        return $this->render('name/edit.html.twig', [
             'category' => $category,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

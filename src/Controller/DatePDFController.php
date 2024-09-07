@@ -38,7 +38,7 @@ class DatePDFController extends AbstractController
 
         return $this->render('date_pdf/new.html.twig', [
             'date_p_d_f' => $datePDF,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -64,7 +64,7 @@ class DatePDFController extends AbstractController
 
         return $this->render('date_pdf/edit.html.twig', [
             'date_p_d_f' => $datePDF,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

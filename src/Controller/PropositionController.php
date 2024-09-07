@@ -40,9 +40,9 @@ class PropositionController extends AbstractController
             return $this->redirectToRoute('app_page_show', ['id' => 1]);
         }
 
-        return $this->renderForm('proposition/new.html.twig', [
+        return $this->render('proposition/new.html.twig', [
             'proposition' => $proposition,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
@@ -68,9 +68,9 @@ class PropositionController extends AbstractController
             return $this->redirectToRoute('app_proposition_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('proposition/edit.html.twig', [
+        return $this->render('proposition/edit.html.twig', [
             'proposition' => $proposition,
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 

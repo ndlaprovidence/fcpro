@@ -120,16 +120,22 @@ class FormationController extends AbstractController
         <hr>'. $formation->getPrerequis() .'
         <b>Modalités d\'accès et d\'inscription</b>
         <hr><br><div></div>
-<u>Dates</u> : '. $formation->getStartDateTime()->format('d/m/Y') .' à '. $formation->getEndDateTime()->format('d/m/Y') .'<br>
-<u>Lieu</u> : ' . $formation->getPlace() . '
-<br><br>
-Nombre de stagiaires minimal : ' . $formation->getCapacityMin() . ' – Nombre de stagiaires maximal : '. $formation->getCapacity() .'<br>
-<i>Si le minimum requis de participants n’est pas atteint la session de formation
-ne pourra avoir lieu.</i>
-<br>
 
-'. $formation->getModalites() .'<br>
-<b>Moyens pédagogiques et techniques</b>
+        <u>Dates</u> : ' . 
+            ($formation->getStartDateTime() ? $formation->getStartDateTime()->format('d/m/Y') : 'Date inconnue') . 
+            ' à ' . 
+            ($formation->getEndDateTime() ? $formation->getEndDateTime()->format('d/m/Y') : 'Date inconnue') . 
+            '<br>
+
+        <u>Lieu</u> : ' . $formation->getPlace() . '
+        <br><br>
+        Nombre de stagiaires minimal : ' . $formation->getCapacityMin() . ' – Nombre de stagiaires maximal : '. $formation->getCapacity() .'<br>
+        <i>Si le minimum requis de participants n’est pas atteint la session de formation
+        ne pourra avoir lieu.</i>
+        <br>
+
+        '. $formation->getModalites() .'<br>
+        <b>Moyens pédagogiques et techniques</b>
         <hr>'. $formation->getMoyenPedagogique() .'<br>';
 
         $pdf->SetFont('helvetica', '', 10);

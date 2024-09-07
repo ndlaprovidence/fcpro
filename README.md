@@ -18,8 +18,11 @@ php bin/console doctrine:fixtures:load
 ## RESOUDRE LE PROBLEME DE CKEDITOR
 
 ```sh
-php bin/console ckeditor:install --tag=4.22.1
+bin/console ckeditor:install --tag=4.22.1
         // --> Répondre "drop" pour re-installer le package ckeditor
-php bin/console assets:install public
+bin/console assets:install public
+
+bin/console cache:clear
+bin/console cache:clear --env=dev
 ```
 

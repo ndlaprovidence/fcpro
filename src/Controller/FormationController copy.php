@@ -7,7 +7,7 @@ use DateTimeImmutable;
 use App\Entity\Formation;
 use App\Entity\DatePDF;
 use App\Repository\DatePDFRepository;
-use App\Form\Formation1Type;
+use App\Form\FormationType;
 use App\Services\ImageUploaderHelper;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -217,7 +217,7 @@ ne pourra avoir lieu.</i>
         $formation->setCreatedAt(new DateTimeImmutable());
         $formation->setCreatedBy($this->getUser());
 
-        $form = $this->createForm(Formation1Type::class, $formation);
+        $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -250,7 +250,7 @@ ne pourra avoir lieu.</i>
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $form = $this->createForm(Formation1Type::class, $formation);
+        $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

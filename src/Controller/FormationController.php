@@ -9,7 +9,7 @@ use DateTimeImmutable;
 use App\Entity\DatePDF;
 use App\Form\RatingType;
 use App\Entity\Formation;
-use App\Form\Formation1Type;
+use App\Form\FormationType;
 use App\Repository\DatePDFRepository;
 use App\Services\ImageUploaderHelper;
 use App\Repository\FormationRepository;
@@ -29,7 +29,7 @@ class FormationController extends AbstractController
         $datePDF = $datePDFRepository->findOneBy([]);
         $dateCreation = $datePDF->getDateCreation();
         $dateModif = $datePDF->getDateModif();
-        
+
         $pdf = new MyPdf();
         $pdf->setFormation($formation);
         $pdf->SetAuthor('SIO TEAM ! 💻');
@@ -44,129 +44,73 @@ class FormationController extends AbstractController
         $pdf->AddPage();
 
         // text-align: right; 
-        $texthead = '<style>.head {font-size: 7px;}</style><span class="head"><i>Date création : 01-09-2022 / MAJ N°'. $datePDF->getNumMaj() .' : ' . $dateModif->format('d-m-Y') . '</i> </span>';
+        $texthead = '<style>.head {font-size: 7px;}</style><span class="head"><i>Date création : 01-09-2022 / MAJ N°' . $datePDF->getNumMaj() . ' : ' . $dateModif->format('d-m-Y') . '</i> </span>';
         $pdf->writeHTMLCell(0, 20, 5, 0, $texthead, 0, 0, 0, true, '', true);
-        
-        // $pdf->SetFont('helvetica', 'B', 20);
-        // $pdf->SetFillColor(160,222,255);
-        // $pdf->SetTextColor(0, 63,144);
-        // $pdf->Image('images/fcpro.jpg', 8, 10, 39, 35, 'JPG', '/page/1', '', true, 150, '', false, false, 0, false, false, false);
-        // $pdf->MultiCell(148, 20, "PROGRAMME DE FORMATION", 0, 'C', 1, 1, '48', '', true, 0, false, true, 20, 'M');
-        // // $pdf->writeHTMLCell(65, 230, "", "", $dateCreation->format('Y-m-d'), 0, 0, 1, true, '', true);
-        // // $pdf->writeHTMLCell(65, 230, "", "", $dateModif->format('Y-m-d'), 0, 0, 1, true, '', true);
 
-        // $pdf->SetFont('helvetica', 'B', 17);
-        // $pdf->SetFillColor(225,225,230);
-        // $pdf->SetTextColor(0,0,0);
-        // $pdf->MultiCell(148, 10, $formation->getName(), 0, 'C', 1, 1, '48', '', true);
-        
-        // $pdf->setCellPaddings(3,3,3,3);
-
-        // COLONNE GAUCHE
-//         $textg = '
-//         <style> .blue { color: rgb(0, 63,144); } .link { color: rgb(100,0,0); }</style>
-//         <br>
-//         <p class="blue">
-// <b>Tarifs :</b></p>
-// '. $formation->getPrice() .' € net.
-//         <p class="blue">
-// <b>Modalités :</b>
-//         </p>
-// '. $formation->getFormat() .'
-//         <p class="blue">
-// <b>Accessibilité aux personnes handicapées :</b>
-// </p><p>
-// <b>Accès au lieu de formation</b> :<br>
-// Les locaux sont accessibles aux
-// personnes en situation de handicap,
-// merci de nous contacter.<br>
-// <br>
-// <b>Accès à la prestation</b> :<br>
-// Une adaptation de la formation est
-// possible pour les personnes en
-// situation de handicap, merci de nous
-// contacter.
-//         </p>
-//         <p class="blue">
-// <b>Contact :</b>
-//         </p><p>
-// <b>Alexia HEBERT, responsable de FCPRO</b><br>
-// Service de Formation Professionnelle<br>
-// Continue de l’OGEC Notre Dame de la Providence<br>
-// <br>
-// 9, rue chanoine Bérenger BP 340, 50300 AVRANCHES.<br>
-// Tel 02 33 58 02 22<br>
-// mail : <span class="link">fcpro@ndlpavranches.fr</span><br>
-// <br>
-// N° activité 25500040250<br>
-// OF certifié QUALIOPI pour les actions de formations<br>
-// <br>
-// Site Web : <span class="link">https://ndlpavranches.fr/fc-pro/</span>
-//         </p>';
-
-//         $pdf->SetFont('helvetica', '', 10);
-//         $pdf->SetFillColor(225,225,230);
-//         $pdf->writeHTMLCell(65, 230, "", "", $textg, 0, 0, 1, true, '', true);
-
-        //--------
         $pdf->setY(45);
         $pdf->setX(75);
 
-        $textd = '
+        $textD = '
         <style>hr { color: rgb(0, 63,144); }</style>
         <p><b>Objectifs de la formation</b>
-        <hr>'. $formation->getObjectif() .'
+        <hr/>' . $formation->getObjectif() . '
         <b>Prérequis necessaires / public cible</b>
-        <hr>'. $formation->getPrerequis() .'
+        <hr/>' . $formation->getPrerequis() . '
         <b>Modalités d\'accès et d\'inscription</b>
-        <hr><br><div></div>
+        <hr/><br/><div></div>
 
-        <u>Dates</u> : ' . 
-            ($formation->getStartDateTime() ? $formation->getStartDateTime()->format('d/m/Y') : 'Date inconnue') . 
-            ' à ' . 
-            ($formation->getEndDateTime() ? $formation->getEndDateTime()->format('d/m/Y') : 'Date inconnue') . 
-            '<br>
+        <u>Dates</u> : ' .
+            ($formation->getStartDateTime() ? $formation->getStartDateTime()->format('d/m/Y') : 'Date inconnue') .
+            ' à ' .
+            ($formation->getEndDateTime() ? $formation->getEndDateTime()->format('d/m/Y') : 'Date inconnue') .
+            '<br/>
 
         <u>Lieu</u> : ' . $formation->getPlace() . '
-        <br><br>
-        Nombre de stagiaires minimal : ' . $formation->getCapacityMin() . ' – Nombre de stagiaires maximal : '. $formation->getCapacity() .'<br>
+        <br/><br/>
+        Nombre de stagiaires minimal : ' . $formation->getCapacityMin() . ' – Nombre de stagiaires maximal : ' . $formation->getCapacity() . '<br/>
         <i>Si le minimum requis de participants n’est pas atteint la session de formation
         ne pourra avoir lieu.</i>
-        <br>
+        <br/>
 
-        '. $formation->getModalites() .'<br>
+        ' . $formation->getModalites() . '<br/>
+
         <b>Moyens pédagogiques et techniques</b>
-        <hr>'. $formation->getMoyenPedagogique() .'<br>';
+        <hr/>' . $formation->getMoyenPedagogique() . '<br/>';
 
         $pdf->SetFont('helvetica', '', 10);
-        $pdf->SetFillColor(255,255,255);
+        $pdf->SetFillColor(255, 255, 255);
 
-        $pdf->writeHTMLCell(120, 50, "", "", $textd, 0, 1, 1, true, '', true);
-        
-        
+        $pdf->writeHTMLCell(120, 50, "", "", $textD, 0, 1, 1, true, '', true);
+
+        $heightTextD = $pdf->getStringHeight(120, $textD);
+
         // Modalité d'évaluation
-        $textd = '<style>hr { color: rgb(0, 63,144); }</style><b>Modalité d\'évaluation</b>
-        <hr>'. $formation->getEvaluation() .'
-        ';        
-        $heightTextd = $pdf->getStringHeight(120, $textd);
+        $textE = '<style>hr { color: rgb(0, 63,144); }</style><b>Modalité d\'évaluation</b>
+        <hr/>' . $formation->getEvaluation() . '
+        ';
 
-        if ($heightTextd > 40) {
+        $heightTextE = $pdf->getStringHeight(120, $textE);
+        //////////////////////////////////
+        // DEBUG : Pour trouver la hauteur max avant le saut de page
+        // $textE = $textE . " - HAUTEUR TEXTE Début du PDF = '" . $heightTextD . "'";
+        // $textE = $textE . " - HAUTEUR TEXTE Evaluation = '" . $heightTextE . "'";
+        //////////////////////////////////
+        if ($heightTextD > 230) {
             $pdf->addPage();
             $currentY = 45;
         } else {
             $currentY = $pdf->getY();
         }
-        
-        $pdf->setX(75);        
-        $pdf->writeHTMLCell(120, 20, 75, $currentY, $textd, 0, 0, 1, true, '', true);
+
+        $pdf->setX(75);
+        $pdf->writeHTMLCell(120, 20, 75, $currentY, $textE, 0, 0, 1, true, '', true);
 
         // Générer le PDF pour l'afficher dans la page
         //return $pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I');
 
-        $response = new Response($pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf','I'));
+        $response = new Response($pdf->Output('fcpro-formation-' . $formation->getId() . '.pdf', 'I'));
         $response->headers->set('Content-Type', 'application/pdf');
         return $response;
-
     }
 
     #[Route('/{id}/duplicate', name: 'app_formation_duplicate', methods: ['GET', 'POST'])]
@@ -249,14 +193,14 @@ class FormationController extends AbstractController
         $formation->setCreatedAt(new DateTimeImmutable());
         $formation->setCreatedBy($this->getUser());
 
-        $form = $this->createForm(Formation1Type::class, $formation);
+        $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $errorMessage = $imageUploaderHelper->uploadImage($form, $formation);
             if (!empty($errorMessage)) {
-                $this->addFlash ('danger', $translator->trans('An error has occured: ') . $errorMessage);
+                $this->addFlash('danger', $translator->trans('An error has occured: ') . $errorMessage);
             }
             $formationRepository->save($formation, true);
 
@@ -282,14 +226,14 @@ class FormationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $form = $this->createForm(Formation1Type::class, $formation);
+        $form = $this->createForm(FormationType::class, $formation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $errorMessage = $imageUploaderHelper->uploadImage($form, $formation);
             if (!empty($errorMessage)) {
-                $this->addFlash ('danger', $translator->trans('An error has occured: ') . $errorMessage);
+                $this->addFlash('danger', $translator->trans('An error has occured: ') . $errorMessage);
             }
             $formationRepository->save($formation, true);
 
@@ -307,8 +251,7 @@ class FormationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-        if ($this->isCsrfTokenValid('delete'.$formation->getId(), $request->request->get('_token'))) 
-        {
+        if ($this->isCsrfTokenValid('delete' . $formation->getId(), $request->request->get('_token'))) {
             $formationRepository->remove($formation, true);
         }
 

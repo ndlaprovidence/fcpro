@@ -17,7 +17,8 @@ class FormationType extends AbstractType
 {
     private $translator;
 
-    public function __construct(TranslatorInterface $translator) {
+    public function __construct(TranslatorInterface $translator)
+    {
         $this->translator = $translator;
     }
 
@@ -33,19 +34,21 @@ class FormationType extends AbstractType
         $builder->add('startDateTime', DateTimeType::class, [
             'widget' => 'single_text',
             'html5' => true,
-            'required' => false, 
+            'required' => false,
         ]);
 
         $builder->add('endDateTime', DateTimeType::class, [
             'widget' => 'single_text',
             'html5' => true,
-            'required' => false, 
+            'required' => false,
         ]);
         $builder->add('place');
         $builder->add('speaker');
         $builder->add('createdBy');
         //Partie PDF
-        $builder->add('objectif', TinymceType::class, ['required' => false]);
+        $builder->add('objectif', TinymceType::class, [
+            'required' => false,
+        ]);
         $builder->add('prerequis', TinymceType::class, ['required' => false, 'label' => 'Prérequis']);
         $builder->add('moyenPedagogique', TinymceType::class, ['required' => false, 'label' => 'Moyen pédagogique']);
         $builder->add('evaluation', TinymceType::class, ['required' => false, 'label' => 'Méthode d\'évaluation']);

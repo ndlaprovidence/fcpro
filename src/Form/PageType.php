@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Page;
 use Symfony\Component\Form\AbstractType;
-use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use Eckinox\TinymceBundle\Form\Type\TinymceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +15,13 @@ class PageType extends AbstractType
     {
         $builder->add('title');
         // ->add('image')
-        $builder->add('text', CKEditorType::class);
+        $builder->add('text', TinymceType::class, [
+            'attr' => [
+                'height' => 800, // Hauteur en pixels
+                'plugins' => 'image',
+                'promotion' => false,
+            ],
+        ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

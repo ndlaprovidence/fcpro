@@ -14,7 +14,7 @@ bin/console doctrine:fixtures:load
 
 ----------------------------------------------------
 
-## Inutile depuis l'utilisation de TinyMCE : RESOUDRE LE PROBLEME DE CKEDITOR
+## Inutile depuis l'utilisation de TinyMCE : POUR RESOUDRE LE PROBLEME DE CKEDITOR
 
 ```sh
 bin/console ckeditor:install --tag=4.22.1

@@ -18,7 +18,8 @@ class PageType extends AbstractType
         $builder->add('text', TinymceType::class, [
             'attr' => [
                 'height' => 800, // Hauteur en pixels
-                'plugins' => 'image',
+                'plugins' => 'image link',
+                'toolbar' => 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | image link',
                 'promotion' => false,
             ],
         ]);

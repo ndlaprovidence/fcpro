@@ -26,6 +26,14 @@ class FormationType extends AbstractType
     {
         $builder->add('name');
         $builder->add('content', TinymceType::class);
+        $builder->add('content', TinymceType::class, [
+            'attr' => [
+                //'height' => 800, // Hauteur en pixels
+                'plugins' => 'image link',
+                'toolbar' => 'undo redo | formatselect | bold italic | alignleft aligncenter alignright | image link',
+                'promotion' => false,
+            ],
+        ]);
         $builder->add('capacityMin');
         $builder->add('capacity');
         $builder->add('price');

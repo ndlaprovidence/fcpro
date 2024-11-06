@@ -14,6 +14,7 @@ class Notation
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'notations')]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Formation $formation = null;
 
     #[ORM\Column(length: 255)]

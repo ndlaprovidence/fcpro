@@ -25,7 +25,7 @@ class FormationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('name');
-        $builder->add('content', TinymceType::class);
+        // $builder->add('content', TinymceType::class);
         $builder->add('content', TinymceType::class, [
             'attr' => [
                 //'height' => 800, // Hauteur en pixels
@@ -56,9 +56,10 @@ class FormationType extends AbstractType
         //Partie PDF
         $builder->add('objectif', TinymceType::class, [
             'required' => false,
+            'label' => 'Objectifs'
         ]);
         $builder->add('prerequis', TinymceType::class, ['required' => false, 'label' => 'Prérequis']);
-        $builder->add('moyenPedagogique', TinymceType::class, ['required' => false, 'label' => 'Moyen pédagogique']);
+        $builder->add('moyenPedagogique', TinymceType::class, ['required' => false, 'label' => 'Moyens pédagogiques et techniques']);
         $builder->add('evaluation', TinymceType::class, ['required' => false, 'label' => 'Méthode d\'évaluation']);
         $builder->add('modalites', TinymceType::class, ['required' => false, 'label' => 'Modalités']);
         $builder->add('format', TinymceType::class, ['required' => false, 'label' => 'Format (champ modalités dans la partie grise à gauche du pdf)']);

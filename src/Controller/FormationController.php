@@ -12,6 +12,7 @@ use App\Entity\Formation;
 use App\Form\FormationType;
 use App\Repository\DatePDFRepository;
 use App\Services\ImageUploaderHelper;
+use App\Repository\NotationRepository;
 use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -84,8 +85,8 @@ class FormationController extends AbstractController
 
         $heightTextD = $pdf->getStringHeight(120, $textD);
 
-        // Modalité d'évaluation
-        $textE = '<style>hr { color: rgb(0, 63,144); }</style><b>Modalité d\'évaluation</b>
+        // Modalités d'évaluation
+        $textE = '<style>hr { color: rgb(0, 63,144); }</style><b>Modalités d\'évaluation</b>
         <hr/>' . $formation->getEvaluation() . '
         ';
 
@@ -247,11 +248,15 @@ class FormationController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_formation_delete', methods: ['POST'])]
-    public function delete(Request $request, Formation $formation, FormationRepository $formationRepository): Response
+    public function delete(Request $request, Formation $formation, FormationRepository $formationRepository, NotationRepository $notationRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
         if ($this->isCsrfTokenValid('delete' . $formation->getId(), $request->request->get('_token'))) {
+            // Supprimez les notations associées
+            $notationRepository->removeByFormation($formation);
+
+            // Supprimez la formation
             $formationRepository->remove($formation, true);
         }
 

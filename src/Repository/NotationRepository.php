@@ -21,6 +21,16 @@ class NotationRepository extends ServiceEntityRepository
         parent::__construct($registry, Notation::class);
     }
 
+    public function removeByFormation($formation)
+    {
+        $qb = $this->createQueryBuilder('n')
+            ->delete()
+            ->where('n.formation = :formation')
+            ->setParameter('formation', $formation);
+
+        $qb->getQuery()->execute();
+    }
+    
     public function save(Notation $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);

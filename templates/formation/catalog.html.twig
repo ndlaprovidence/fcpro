@@ -31,7 +31,10 @@
 				{% endfor %}
 
 				{% if countNotes > 0 %}
-					<p><strong>Notes moyennes:</strong> {{ totalNotes / countNotes }}<strong> /6</strong></p>
+					<p>
+						<strong>Note moyenne :</strong> {{ totalNotes / countNotes }}/6<br/>
+						<strong>Nombre d'avis :</strong> {{ formation.notations|length }}
+					</p>					
 				{% else %}
 					<p><strong>Aucune note disponible.</strong></p>
 				{% endif %}<br><br>

@@ -69,12 +69,12 @@ class NotationController extends AbstractController
                     // }
                     // $notationRepository->save($notation, true);
 
-                    dump($notation);
+                    // dump($notation);
                     // if (!$existingNotation) {
                         $notationRepository->save($notation, true);
                     // }
 
-                    return $this->redirectToRoute('app_page_show', ['id' => 1]);
+                    // return $this->redirectToRoute('app_page_show', ['id' => 1]);
                 // }
             }
 

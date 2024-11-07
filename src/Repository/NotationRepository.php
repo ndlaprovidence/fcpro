@@ -33,10 +33,13 @@ class NotationRepository extends ServiceEntityRepository
 
     public function save(Notation $entity, bool $flush = false): void
     {
+        dump('AVANT persist');
         $this->getEntityManager()->persist($entity);
-
+        dump('APRES persist');
         if ($flush) {
+            dump('AVANT flush');
             $this->getEntityManager()->flush();
+            dump('APRES flush');
         }
     }
 

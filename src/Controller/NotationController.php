@@ -57,7 +57,7 @@ class NotationController extends AbstractController
             if ($form->isSubmitted() && $form->isValid()) {
 
                 $formationId = $notation->getFormation()->getid();
-                dump($formationId);
+                // dump($formationId);
                 
                 // if ($formationId > 0) {
         
@@ -69,6 +69,7 @@ class NotationController extends AbstractController
                     // }
                     // $notationRepository->save($notation, true);
 
+                    dump($notation);
                     // if (!$existingNotation) {
                         $notationRepository->save($notation, true);
                     // }

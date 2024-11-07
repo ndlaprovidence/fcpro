@@ -69,7 +69,7 @@ class NotationController extends AbstractController
                     // }
                     // $notationRepository->save($notation, true);
 
-                    dump($notation);
+                    // dump($notation);
                     // if (!$existingNotation) {
                         $notationRepository->save($notation, true);
                     // }

@@ -62,16 +62,16 @@ class NotationController extends AbstractController
                 if ($formationId > 0) {
         
                     // Recherchez une note existante pour cette formation et cet utilisateur
-                    $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
+                    // $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
 
                     // if ($existingNotation) {
                     //     $notationRepository->remove($existingNotation, true);
                     // }
                     // $notationRepository->save($notation, true);
 
-                    if (!$existingNotation) {
+                    // if (!$existingNotation) {
                         $notationRepository->save($notation, true);
-                    }
+                    // }
 
                     return $this->redirectToRoute('app_page_show', ['id' => 1]);
                 }

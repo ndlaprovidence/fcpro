@@ -5,10 +5,11 @@ namespace App\Controller;
 use App\Entity\Notation;
 use App\Form\NotationType;
 use App\Repository\NotationRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\FormationRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/notation')]
 class NotationController extends AbstractController
@@ -24,49 +25,67 @@ class NotationController extends AbstractController
     }
 
     #[Route('/new', name: 'app_notation_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, NotationRepository $notationRepository): Response
+    public function new(Request $request, NotationRepository $notationRepository, FormationRepository $formationRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         
         $user = $this->getUser();
+        $currentUserEmail = $user->getEmail();
 
+        // Récupérer les formations disponibles pour l'utilisateur courant
+        $formations = $formationRepository->createQueryBuilder('f')
+            ->where('f.validation = :validation')
+            ->andWhere('f.id NOT IN (
+                SELECT nf.id FROM App\Entity\Notation n
+                JOIN n.formation nf
+                WHERE n.user = :userEmail
+            )')
+            ->setParameter('validation', 1)
+            ->setParameter('userEmail', $currentUserEmail)
+            ->getQuery()
+            ->getResult();
 
-        // Créez une nouvelle note à partir des données du formulaire
-        $notation = new Notation();
-        $form = $this->createForm(NotationType::class, $notation);
+        // Créer le formulaire uniquement si des formations sont disponibles
+        if (count($formations) > 0) {
 
-        $form->handleRequest($request);
+            // Créez une nouvelle note à partir des données du formulaire
+            $notation = new Notation();
+            $form = $this->createForm(NotationType::class, $notation);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+            $form->handleRequest($request);
 
-            $formationId = $notation->getFormation()->getid();
-            // dump($formationId);
-            
-            if ($formationId > 0) {
-    
-                // Recherchez une note existante pour cette formation et cet utilisateur
-                $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
-                // dump($existingNotation);
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $formationId = $notation->getFormation()->getid();
+                // dump($formationId);
+                
+                if ($formationId > 0) {
         
-                // Supprimez l'ancienne note si elle existe
-                if ($existingNotation) {
-                    $notationRepository->remove($existingNotation, true);
-                    // Ajoutez cette ligne pour débogage
-                    // dump("Ancienne note supprimée pour l'utilisateur : {$existingNotation->getUser()}");
+                    // Recherchez une note existante pour cette formation et cet utilisateur
+                    $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
+
+                    // if ($existingNotation) {
+                    //     $notationRepository->remove($existingNotation, true);
+                    // }
+                    // $notationRepository->save($notation, true);
+
+                    if (!$existingNotation) {
+                        $notationRepository->save($notation, true);
+                    }
+
+                    return $this->redirectToRoute('app_page_show', ['id' => 1]);
                 }
-
-                // dump($notation);
-                // Save the new note
-                $notationRepository->save($notation, true);
-                // dump($notationRepository);
-
-                return $this->redirectToRoute('app_page_show', ['id' => 1]);
             }
+
+            return $this->render('notation/new.html.twig', [
+                'form' => $form->createView(),
+            ]);
+
         }
 
-        return $this->render('notation/new.html.twig', [
-            'form' => $form->createView(),
-        ]);
+        // Affichez un message si aucune formation n'est disponible
+        return $this->render('notation/no_formations.html.twig');
+
     }
 
 

@@ -26,14 +26,20 @@ class NotationType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $user = $this->security->getUser();
-
+        $currentUserEmail = $user->getEmail();
         $builder
             ->add('formation', EntityType::class, [
                 'class' => Formation::class,
-                'query_builder' => function (FormationRepository $er) {
+                'query_builder' => function (FormationRepository $er) use ($currentUserEmail) {
                     return $er->createQueryBuilder('f')
-                        ->andWhere('f.validation = :validation')
-                        ->setParameter('validation', 1);
+                        ->where('f.validation = :validation')
+                        ->andWhere('f.id NOT IN (
+                            SELECT nf.id FROM App\Entity\Notation n
+                            JOIN n.formation nf
+                            WHERE n.user = :userEmail
+                        )')
+                        ->setParameter('validation', 1)
+                        ->setParameter('userEmail', $currentUserEmail);
                 },
                 'choice_label' => 'name',
             ])

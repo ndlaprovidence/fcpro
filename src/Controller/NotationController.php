@@ -56,10 +56,10 @@ class NotationController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                $formationId = $notation->getFormation()->getid();
-                // dump($formationId);
+                // $formationId = $notation->getFormation()->getid();
+                // // dump($formationId);
                 
-                if ($formationId > 0) {
+                // if ($formationId > 0) {
         
                     // Recherchez une note existante pour cette formation et cet utilisateur
                     // $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
@@ -74,7 +74,7 @@ class NotationController extends AbstractController
                     // }
 
                     return $this->redirectToRoute('app_page_show', ['id' => 1]);
-                }
+                // }
             }
 
             return $this->render('notation/new.html.twig', [

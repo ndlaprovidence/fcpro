@@ -167,8 +167,11 @@ class FormationController extends AbstractController
     #[Route('/catalog', name: 'app_formation_catalog', methods: ['GET'])]
     public function catalog(FormationRepository $formationRepository): Response
     {
+
+        $formations = $formationRepository->findAll();
+        dump($formations);
         return $this->render('formation/catalog.html.twig', [
-            'formations' => $formationRepository->findAll(),
+            'formations' => $formations,
         ]);
     }
 

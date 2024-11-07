@@ -40,25 +40,25 @@ class NotationController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $formationId = $notation->getFormation()->getid();
-            dump($formationId);
+            // dump($formationId);
             
             if ($formationId > 0) {
     
                 // Recherchez une note existante pour cette formation et cet utilisateur
                 $existingNotation = $notationRepository->findOneBy(['formation' => $formationId, 'user' => $user->getEmail()]);
-                dump($existingNotation);
+                // dump($existingNotation);
         
                 // Supprimez l'ancienne note si elle existe
                 if ($existingNotation) {
                     $notationRepository->remove($existingNotation, true);
                     // Ajoutez cette ligne pour débogage
-                    dump("Ancienne note supprimée pour l'utilisateur : {$existingNotation->getUser()}");
+                    // dump("Ancienne note supprimée pour l'utilisateur : {$existingNotation->getUser()}");
                 }
 
-                dump($notation);
+                // dump($notation);
                 // Save the new note
                 $notationRepository->save($notation, true);
-                dump($notationRepository);
+                // dump($notationRepository);
 
                 return $this->redirectToRoute('app_page_show', ['id' => 1]);
             }

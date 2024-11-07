@@ -19,10 +19,14 @@ class NotationRepository extends ServiceEntityRepository
 
     public function save(Notation $entity, bool $flush = false): void
     {
+        dump('1');
         $this->entityManager->persist($entity);
+        dump('2');
 
         if ($flush) {
+            dump('3');
             $this->entityManager->flush();
+            dump('4');
         }
     }
 

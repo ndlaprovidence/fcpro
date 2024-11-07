@@ -169,7 +169,7 @@ class FormationController extends AbstractController
     {
 
         $formations = $formationRepository->findAll();
-        dump($formations);
+        // dump($formations);
         return $this->render('formation/catalog.html.twig', [
             'formations' => $formations,
         ]);

@@ -56,8 +56,8 @@ class NotationController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
 
-                // $formationId = $notation->getFormation()->getid();
-                // // dump($formationId);
+                $formationId = $notation->getFormation()->getid();
+                dump($formationId);
                 
                 // if ($formationId > 0) {
         
